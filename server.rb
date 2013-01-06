@@ -1,0 +1,6 @@
+require "webrick"
+
+server = WEBrick::HTTPServer.new :Port => 8800
+server.mount "/", WEBrick::HTTPServlet::FileHandler, "./public"
+trap("INT") { server.stop }
+server.start

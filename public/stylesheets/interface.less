@@ -1,0 +1,45 @@
+aside.info {
+  color: #fff;
+  height: calc(~"100% - 40px");
+  height: -webkit-calc(~"100% - 40px");
+  // width: @info-width - $default-padding * 2;
+  right: 0;
+  position: absolute;
+  z-index: 2;
+  background-color: #3b0122;
+  box-shadow: 5px 5px 5px 20px hsla(0, 0%, 0%, 0.65);
+  /* @include box-shadow(5px 5px 5px 20px hsla(0, 0%, 0%, 0.65)); */
+  padding: @default-padding;
+  h2 {
+    font-size: 30px;
+  }
+  img {
+    width: @info-width - @default-padding * 2;
+    height: @info-width - @default-padding * 2;
+  }
+}
+
+nav.slider {
+  background-color: green;
+  font-size: 0;
+  .increment, .decrement, .bar {
+    display: inline-block;
+    height: 20px;
+  }
+  .increment, .decrement {
+    background-color: blue;
+    width: 10px;
+    cursor: pointer;
+  }
+  .bar {
+    background-color: red;
+    width: calc(~"100% - 20px");
+    width: -webkit-calc(~"100% - 20px");
+    .fill {
+      width: 15%;
+      height: 100%;
+      display: inline-block;
+      background-color: green;
+    }
+  }
+}

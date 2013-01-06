@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>New game - Indolentia</title>
+    <link rel="stylesheet/less" type="text/css" href="stylesheets/new.less" />
+    <script type="text/javascript" src="javascripts/vendor/less.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/jquery.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/cycle.js"></script>
+    <script type="text/javascript" src="javascripts/extensions/jquery.serializeJSON.js"></script>
+    <script type="text/javascript" src="javascripts/system/storage.js"></script>
+    <script type="text/javascript" src="javascripts/new.js"></script>
+  </head>
+  <body>
+    <form action="#">
+      <fieldset>
+        <label>Galaxy size</label>
+        <select name="size">
+          <option value="40">Small</option>
+          <option value="80">Medium</option>
+          <option value="110">Large</option>
+          <option value="150">Huge</option>
+        </select>
+
+        <br />
+
+        <label>Opponents</label>
+        <select name="players">
+          <option>2</option>
+          <option>3</option>
+        </select>
+
+        <br />
+      </fieldset>
+
+      <fieldset>
+        <label>Race selection</label>
+        <select name="race">
+          <option name="alpha">Alpha</option>
+          <option name="beta">Beta</option>
+          <option name="gamma">Gamma</option>
+        </select>
+
+        <br />
+        <label>Color</label>
+        <select name="color">
+          <option value="red">Red</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="yellow">Yellow</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <label>Homeworld</label>
+        <select name="homeworld">
+          <option>Alpha</option>
+          <option>Beta</option>
+          <option>Gamma</option>
+        </select>
+      </fieldset>
+
+      <input type="submit" value="Create" id="create-galaxy" />
+    </form>
+  </body>
+</html>
