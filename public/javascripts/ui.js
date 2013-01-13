@@ -19,7 +19,7 @@ UI.prototype.set = function(objects) {
 };
 
 UI.prototype.render = function(object) {
-    var klass = object.__className__.toLowerCase();
+    var klass = MemoryStore.getClassName(object).toLowerCase();
     $.proxy(this.modules[klass], this)(object);
 };
 

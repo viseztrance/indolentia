@@ -3,12 +3,33 @@
   <img src="<%= preview %>" alt="" />
 </div>
 
-<section>
-  <input type="text" class="slider" name="test" value="15" />
-  <input type="text" class="slider" name="test" value="19" />
-  <input type="text" class="slider" name="test" value="25" />
-  <input type="text" class="slider" name="test" value="36" />
-  <input type="text" class="slider" name="test" value="5" />
+<section class="controls">
+  <ul>
+    <li>
+      <label>Ship</label>
+      <input type="text" class="slider" name="test" value="15" />
+    </li>
+
+    <li>
+      <label>Defence</label>
+      <input type="text" class="slider" name="test" value="19" />
+    </li>
+
+    <li>
+      <label>Industry</label>
+      <input type="text" class="slider" name="test" value="25" />
+    </li>
+
+    <li>
+      <label>Ecology</label>
+      <input type="text" class="slider" name="test" value="36" />
+    </li>
+
+    <li>
+      <label>Tech</label>
+      <input type="text" class="slider" name="test" value="5" />
+    </li>
+  </ul>
 </section>
 
 <section>
