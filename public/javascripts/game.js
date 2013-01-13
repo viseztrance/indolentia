@@ -17,6 +17,7 @@ Game.prototype.setGalaxy = function() {
         max: parseInt(this.options.size, 10) / 2
     });
     this.galaxy.create();
+    this.galaxy.game = this;
 };
 
 Game.prototype.setPlayers = function() {
@@ -40,8 +41,10 @@ Game.prototype.setHomeWorlds = function() {
     var boundries = new ConvexHull(coordinates).getValues();
     for(var i = 0; i < this.options.players; i++) {
         var star = this.galaxy.findStarByCoordinates(boundries[i * Math.floor(boundries.length / this.options.players)]);
+        var player = this.players[i];
         star.setAttributes(Star.HOMEWORLD);
-        star.player = this.players[i];
+        player.explore(star);
+        star.setPlayer(player);
     }
 };
 

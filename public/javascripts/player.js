@@ -1,5 +1,7 @@
 function Player(attributes) {
-    this.attributes = attributes || {};
+    this.attributes    = attributes || {};
+    this.ownedStars    = [];
+    this.exploredStars = [];
 }
 
 Player.colors = ["red", "green", "yellow"];
@@ -18,4 +20,8 @@ Player.prototype.setAttr = function(name, value) {
 Player.prototype.create = function() {
     this.setAttr("color", this.attributes.color);
     this.setAttr("race", this.attributes.race);
+};
+
+Player.prototype.explore = function(star) {
+    this.exploredStars.push(star);
 };

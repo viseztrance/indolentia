@@ -25,8 +25,15 @@ UI.prototype.render = function(object) {
 
 UI.prototype.modules = {
     star: function(star) {
-        var preview = Star.TYPES[star.attributes.type].preview;
-        var args = $.extend({}, star.attributes, { preview: preview });
+        var preview = Star.TYPES[star.attributes.type].preview,
+            currentPlayer = star.galaxy.game.currentPlayer;
+        var defaults = {
+            preview: preview,
+            player: star.player || false,
+            currentPlayer: star.player == currentPlayer,
+            explored: currentPlayer.exploredStars.indexOf(star) != -1
+        };
+        var args = $.extend({}, star.attributes, defaults);
         var template = new Template("star").process(args);
         this.info.html(template);
         $("input.slider").slide({

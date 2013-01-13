@@ -3,8 +3,7 @@ function Star(attributes) {
     this.attributes = {
         maxPopulation: 0,
         currentPopulation: 0,
-        factories: 0,
-        reachable: false
+        factories: 0
     };
     this.setAttributes(attributes);
 }
@@ -27,15 +26,23 @@ Star.TYPES = {
 };
 
 Star.HOMEWORLD = {
-    reachable: true,
     maxPopulation: 100,
     currentPopulation: 50,
     factories: 15,
-    type: "yellow"
+    type: "yellow",
+    reachable: true
 };
 
 Star.prototype.setAttributes = function(attributes) {
     $.extend(this.attributes, attributes);
+};
+
+Star.prototype.setPlayer = function(player) {
+    if(this.player) {
+        this.player.ownedStars.splice(this.player.ownedStars.indexOf(this), 1);
+    }
+    this.player = player;
+    this.player.ownedStars.push(this);
 };
 
 Star.prototype.create = function() {
