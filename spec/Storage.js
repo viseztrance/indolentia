@@ -1,5 +1,4 @@
 function MyObject(value) {
-    this.__className__ = "MyObject";
     this.attr = value;
 };
 
@@ -12,7 +11,7 @@ describe("MemoryStore", function() {
     describe("Saving", function() {
         it("serializes data into localStorage", function() {
             MemoryStore.save("say", { hello: "world" });
-            expect(localStorage["say"]).toEqual('{"hello":"world"}');
+            expect(localStorage["say"]).toEqual('{"hello":"world","__klass__":"Object"}');
         });
 
         it("serializes circular dependencies", function() {
@@ -25,7 +24,7 @@ describe("MemoryStore", function() {
         });
     });
 
-    describe("Retriving", function() {
+    describe("Retrieving", function() {
         it("deserializes data from localStorage", function() {
             localStorage["say"] = '{"hello":"world"}';
             expect(MemoryStore.read("say")).toEqual({ hello: "world" });
@@ -67,7 +66,7 @@ describe("MemoryStore", function() {
             MemoryStore.save("say", { hello: "world" });
             MemoryStore.save("whisper", { goodbye: "world" });
             MemoryStore.delete("say");
-            expect(localStorage["whisper"]).toEqual('{"goodbye":"world"}');
+            expect(localStorage["whisper"]).toEqual('{"goodbye":"world","__klass__":"Object"}');
         });
     });
 

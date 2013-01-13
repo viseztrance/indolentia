@@ -1,6 +1,4 @@
 function Game(options) {
-    this.__className__ = "Game";
-
     this.options = options;
 }
 

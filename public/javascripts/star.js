@@ -1,6 +1,4 @@
 function Star(attributes) {
-    this.__className__ = "Star";
-
     this.data = {};
     this.attributes = {
         maxPopulation: 0,

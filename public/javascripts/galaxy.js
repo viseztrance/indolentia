@@ -1,6 +1,4 @@
 function Galaxy(data) {
-    this.__className__ = "Galaxy";
-
     this.data = data;
     this.stars = [];
 }

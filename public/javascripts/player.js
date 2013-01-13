@@ -1,6 +1,4 @@
 function Player(attributes) {
-    this.__className__ = "Player";
-
     this.attributes = attributes || {};
 }
 
