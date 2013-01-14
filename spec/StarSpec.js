@@ -56,4 +56,15 @@ describe("Star", function() {
         });
     });
 
+    describe("credits", function() {
+        describe("per turn", function() {
+            it("scales with the number of citizens", function() {
+                star.currentPopulation = 10;
+                expect(star.creditsPerTurn()).toEqual(5);
+                star.currentPopulation = 50;
+                expect(star.creditsPerTurn()).toEqual(25);
+            });
+        });
+    });
+
 });

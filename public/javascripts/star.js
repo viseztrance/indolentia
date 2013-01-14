@@ -3,7 +3,8 @@ function Star(attributes) {
     this.attributes = {
         maxPopulation: 0,
         currentPopulation: 0,
-        factories: 0
+        factories: 0,
+        credits: 0
     };
     this.setAttributes(attributes);
 }
@@ -13,15 +14,15 @@ Star.canvas = null;
 Star.TYPES = {
     blue: {
           url: "/images/stars/blue.png",
-          preview: "/images/wasteland.png"
+          preview: "/images/preview.png"
     },
     gray: {
         url: "/images/stars/gray.png",
-        preview: "/images/wasteland.png"
+        preview: "/images/preview.png"
     },
     yellow: {
         url: "/images/stars/yellow.png",
-        preview: "/images/wasteland.png"
+        preview: "/images/preview.png"
     }
 };
 
@@ -43,6 +44,11 @@ Star.prototype.setPlayer = function(player) {
     }
     this.player = player;
     this.player.ownedStars.push(this);
+};
+
+Star.prototype.creditsPerTurn = function(attributes) {
+    var productionPerCitizen = 0.5;
+    return productionPerCitizen * this.currentPopulation;
 };
 
 Star.prototype.create = function() {
