@@ -1,24 +1,22 @@
 <h2><%= name %></h2>
 <div class="preview">
-  <img src="<%= preview %>" alt="" />
   <% if(explored) { %>
     <span>max <%= maxPopulation %> pop</span>
   <% } %>
+  <img src="<%= preview %>" alt="" />
 </div>
 
 <% if(currentPlayer) { %>
-  <section>
+  <section class="stats">
     <dl>
       <dt>Population</dt>
       <dd><%= currentPopulation %></dd>
+      <dt>Bases</dt>
+      <dd>0</dd>
     </dl>
     <dl>
       <dt>Production</dt>
       <dd><%= factories %></dd>
-    </dl>
-    <dl>
-      <dt>Bases</dt>
-      <dd>0</dd>
     </dl>
   </section>
 
