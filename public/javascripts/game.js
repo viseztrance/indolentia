@@ -1,5 +1,6 @@
 function Game(options) {
     this.options = options;
+    this.turnCount = 0;
 }
 
 Game.prototype.create = function() {
@@ -54,4 +55,8 @@ Game.prototype.render = function() {
 
     Star.canvas = this.map.canvas;
     this.galaxy.render();
+};
+
+Game.prototype.nextTurn = function() {
+    this.turnCount++;
 };
