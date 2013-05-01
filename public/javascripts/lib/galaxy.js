@@ -44,7 +44,7 @@ Galaxy.prototype.create = function() {
 };
 
 Galaxy.prototype.render = function() {
-    for(i in this.stars) {
+    for(var i in this.stars) {
         this.stars[i].create();
     }
 };
