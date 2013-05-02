@@ -46,12 +46,12 @@ Star.HOMEWORLD = {
 
 Star.COST = {
     population: 20,
-    factory: 10
+    industry: 10
 };
 
 Star.INCOME = {
     population: 0.5,
-    factory: 1
+    industry: 1
 };
 
 Star.prototype.setAttributes = function(attributes) {
@@ -69,7 +69,7 @@ Star.prototype.setPlayer = function(player) {
 Star.prototype.creditsPerTurn = function() {
     var that = this;
     var credits = {
-        value: Star.INCOME.population * this.currentPopulation + Star.INCOME.factory * this.getActiveFactories()
+        value: Star.INCOME.population * this.currentPopulation + Star.INCOME.industry * this.getActiveFactories()
     };
     for(var key in that.budget) {
         (function() {
@@ -83,8 +83,12 @@ Star.prototype.creditsPerTurn = function() {
     return credits;
 };
 
-Star.prototype.growthPerTurn = function() {
-    return this.creditsPerTurn() / Star.COST.population;
+Star.prototype.populationGrowth = function() {
+    return this.creditsPerTurn().forPopulation() / Star.COST.population;
+};
+
+Star.prototype.industryGrowth = function() {
+    return this.creditsPerTurn().forIndustry() / Star.COST.industry;
 };
 
 Star.prototype.getActiveFactories = function() {

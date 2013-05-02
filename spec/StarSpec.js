@@ -119,11 +119,39 @@ describe("Star", function() {
 
     describe("population", function() {
         it("grows at a cost of " + Star.COST.population + " per unit", function() {
-            spyOn(star, "creditsPerTurn");
-            star.creditsPerTurn.andReturn(20);
-            expect(star.growthPerTurn()).toEqual(20 / Star.COST.population);
-            star.creditsPerTurn.andReturn(50);
-            expect(star.growthPerTurn()).toEqual(50 / Star.COST.population);
+            star.currentPopulation = 0;
+            star.budget.population = 1;
+            spyOn(star, "getActiveFactories");
+            star.getActiveFactories.andReturn(20);
+            expect(star.populationGrowth()).toEqual(20 / Star.COST.population);
+            star.getActiveFactories.andReturn(50);
+            expect(star.populationGrowth()).toEqual(50 / Star.COST.population);
+        });
+
+        it("has growth hindered by budget", function() {
+            star.budget.population = 0.2;
+            spyOn(star, "getActiveFactories");
+            star.getActiveFactories.andReturn(20);
+            expect(star.populationGrowth()).toEqual(4 / Star.COST.population);
+        });
+    });
+
+    describe("industry", function() {
+        it("grows at a cost of " + Star.COST.industry + " per unit", function() {
+            star.currentIndustry = 0;
+            star.budget.industry = 1;
+            spyOn(star, "getActiveFactories");
+            star.getActiveFactories.andReturn(20);
+            expect(star.industryGrowth()).toEqual(20 / Star.COST.industry);
+            star.getActiveFactories.andReturn(50);
+            expect(star.industryGrowth()).toEqual(50 / Star.COST.industry);
+        });
+
+        it("has growth hindered by budget", function() {
+            star.budget.industry = 0.2;
+            spyOn(star, "getActiveFactories");
+            star.getActiveFactories.andReturn(20);
+            expect(star.industryGrowth()).toEqual(4 / Star.COST.industry);
         });
     });
 
