@@ -1,11 +1,21 @@
 function Star(attributes) {
     this.data = {};
+
+    this.budget = {
+        ship: 0,
+        defence: 0,
+        industry: 0,
+        population: 1,
+        technology: 0
+    };
+
     this.attributes = {
         maxPopulation: 0,
         currentPopulation: 0,
         factories: 0,
         credits: 0
     };
+
     this.setAttributes(attributes);
 }
 
@@ -34,6 +44,16 @@ Star.HOMEWORLD = {
     reachable: true
 };
 
+Star.COST = {
+    population: 20,
+    factory: 10
+};
+
+Star.INCOME = {
+    population: 0.5,
+    factory: 1
+};
+
 Star.prototype.setAttributes = function(attributes) {
     $.extend(this.attributes, attributes);
 };
@@ -46,9 +66,29 @@ Star.prototype.setPlayer = function(player) {
     this.player.ownedStars.push(this);
 };
 
-Star.prototype.creditsPerTurn = function(attributes) {
-    var productionPerCitizen = 0.5;
-    return productionPerCitizen * this.currentPopulation;
+Star.prototype.creditsPerTurn = function() {
+    var that = this;
+    var credits = {
+        value: Star.INCOME.population * this.currentPopulation + Star.INCOME.factory * this.getActiveFactories()
+    };
+    for(var key in that.budget) {
+        (function() {
+            var name = key,
+                reader = "for" + key.charAt(0).toUpperCase() + name.slice(1, 10);
+            credits[reader] = function() {
+                return that.budget[name] * this.value;
+            };
+        })();
+    }
+    return credits;
+};
+
+Star.prototype.growthPerTurn = function() {
+    return this.creditsPerTurn() / Star.COST.population;
+};
+
+Star.prototype.getActiveFactories = function() {
+    return this.factories || 0;
 };
 
 Star.prototype.create = function() {

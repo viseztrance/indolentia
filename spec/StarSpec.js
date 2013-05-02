@@ -57,13 +57,73 @@ describe("Star", function() {
     });
 
     describe("credits", function() {
-        describe("per turn", function() {
-            it("scales with the number of citizens", function() {
-                star.currentPopulation = 10;
-                expect(star.creditsPerTurn()).toEqual(5);
-                star.currentPopulation = 50;
-                expect(star.creditsPerTurn()).toEqual(25);
+        it("scales with the number of citizens", function() {
+            star.currentPopulation = 10;
+            expect(star.creditsPerTurn().value).toEqual(5);
+            star.currentPopulation = 50;
+            expect(star.creditsPerTurn().value).toEqual(25);
+        });
+
+        it("scales with the number of active factories", function() {
+            star.currentPopulation = 10;
+            spyOn(star, "getActiveFactories");
+            star.getActiveFactories.andReturn(5);
+            expect(star.creditsPerTurn().value).toEqual(10);
+            star.getActiveFactories.andReturn(10);
+            expect(star.creditsPerTurn().value).toEqual(15);
+        });
+
+        describe("budget allocation", function() {
+            var credits;
+            beforeEach(function() {
+                credits = star.creditsPerTurn();
+                credits.value = 120;
             });
+
+            it("has a percentage assigned for ship building", function() {
+                star.budget.ship = 0.2;
+                expect(credits.forShip()).toEqual(24);
+                star.budget.ship = 0.7;
+                expect(credits.forShip()).toEqual(84);
+            });
+
+            it("has a percentage assigned for defence", function() {
+                star.budget.defence = 0.2;
+                expect(credits.forDefence()).toEqual(24);
+                star.budget.defence = 0.7;
+                expect(credits.forDefence()).toEqual(84);
+            });
+
+            it("has a percentage assigned for industry", function() {
+                star.budget.industry = 0.2;
+                expect(credits.forIndustry()).toEqual(24);
+                star.budget.industry = 0.7;
+                expect(credits.forIndustry()).toEqual(84);
+            });
+
+            it("has a percentage assigned for population", function() {
+                star.budget.population = 0.2;
+                expect(credits.forPopulation()).toEqual(24);
+                star.budget.population = 0.7;
+                expect(credits.forPopulation()).toEqual(84);
+            });
+
+            it("has a percentage assigned for technology", function() {
+                star.budget.technology = 0.2;
+                expect(credits.forTechnology()).toEqual(24);
+                star.budget.technology = 0.7;
+                expect(credits.forTechnology()).toEqual(84);
+            });
+        });
+    });
+
+    describe("population", function() {
+        it("grows at a cost of " + Star.COST.population + " per unit", function() {
+            spyOn(star, "creditsPerTurn");
+            star.creditsPerTurn.andReturn(20);
+            expect(star.growthPerTurn()).toEqual(20 / Star.COST.population);
+            star.creditsPerTurn.andReturn(50);
+            expect(star.growthPerTurn()).toEqual(50 / Star.COST.population);
         });
     });
 
