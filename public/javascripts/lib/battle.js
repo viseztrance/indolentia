@@ -80,7 +80,7 @@ Battle.prototype.getFastestShip = function() {
         // Make sure ship wasn't already used
         if(this.usedShips.indexOf(currentShip) == -1) {
             // Get ship with the highest initiative
-            if(!fastestShip || fastestShip.attributes.initiative < currentShip) {
+            if(!fastestShip || fastestShip.attributes.initiative < currentShip.attributes.initiative) {
                 fastestShip = currentShip;
             }
         }

@@ -4,6 +4,9 @@ describe("Battle", function() {
     beforeEach(function() {
         loadFixtures("battle.html");
         canvas = Raphael($("#battle-field").get(0), 500, 500);
+    });
+
+    afterEach(function() {
         $("svg").hide();
     });
 
@@ -45,19 +48,45 @@ describe("Battle", function() {
     });
 
     describe("player turn", function() {
-        describe("at start", function() {
-            it("selects fastest ship", function() {
+        var ship1 = new Ship({ initiative: 4 }),
+            ship2 = new Ship({ initiative: 8 }),
+            ship3 = new Ship({ initiative: 2 });
 
+        beforeEach(function() {
+            var attacker = new Fleet();
+            attacker.addShip(ship1);
+            attacker.addShip(ship2);
+
+            var defender = new Fleet();
+            defender.addShip(ship3);
+
+            battle = new Battle(attacker, defender);
+            battle.setup({
+                canvas: { element: canvas },
+                grid: { width: 10, height: 5 }
+            });
+        });
+
+        describe("at start", function() {
+            it("selects ship with the highest initiative", function() {
+                expect(battle.currentShip).toEqual(ship2);
             });
         });
 
         describe("at end", function() {
-            it("selects selects next ships by decending speed", function() {
-
+            it("selects selects next ships by decending initiative", function() {
+                battle.nextTurn();
+                expect(battle.currentShip).toEqual(ship1);
+                battle.nextTurn();
+                expect(battle.currentShip).toEqual(ship3);
             });
 
             it("cycles through all existing ships", function() {
-
+                var firstShip = battle.currentShip;
+                battle.nextTurn();
+                battle.nextTurn();
+                battle.nextTurn();
+                expect(battle.currentShip).toEqual(firstShip);
             });
         });
     });
