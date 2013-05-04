@@ -75,17 +75,17 @@ describe("Battle", function() {
 
         describe("at end", function() {
             it("selects selects next ships by decending initiative", function() {
-                battle.nextTurn();
+                battle.endTurn();
                 expect(battle.currentShip).toEqual(ship1);
-                battle.nextTurn();
+                battle.endTurn();
                 expect(battle.currentShip).toEqual(ship3);
             });
 
             it("cycles through all existing ships", function() {
                 var firstShip = battle.currentShip;
-                battle.nextTurn();
-                battle.nextTurn();
-                battle.nextTurn();
+                battle.endTurn();
+                battle.endTurn();
+                battle.endTurn();
                 expect(battle.currentShip).toEqual(firstShip);
             });
         });

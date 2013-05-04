@@ -24,10 +24,23 @@ describe("Game", function() {
         it("increments turn count", function() {
             var game = new Game(options);
             game.create();
-            game.nextTurn();
+            game.endTurn();
             expect(game.turnCount).toEqual(1);
-            game.nextTurn();
+            game.endTurn();
             expect(game.turnCount).toEqual(2);
+        });
+
+        it("ends stars turn", function() {
+            var game = new Game(options);
+            game.create();
+
+            for(var i in game.galaxy.stars) {
+                spyOn(game.galaxy.stars[i], "endTurn");
+            }
+            game.endTurn();
+            for(var j in game.galaxy.stars) {
+                expect(game.galaxy.stars[j].endTurn.callCount).toEqual(1);
+            }
         });
     });
 

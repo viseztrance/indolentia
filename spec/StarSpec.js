@@ -5,7 +5,8 @@ describe("Star", function() {
         name: "My star 1",
         type: "blue",
         population: 80,
-        production: 10
+        production: 10,
+        maxPopulation: 100
     };
 
     beforeEach(function() {
@@ -58,14 +59,14 @@ describe("Star", function() {
 
     describe("credits", function() {
         it("scales with the number of citizens", function() {
-            star.currentPopulation = 10;
+            star.attributes.population = 10;
             expect(star.creditsPerTurn().value).toEqual(5);
-            star.currentPopulation = 50;
+            star.attributes.population = 50;
             expect(star.creditsPerTurn().value).toEqual(25);
         });
 
         it("scales with the number of active factories", function() {
-            star.currentPopulation = 10;
+            star.attributes.population = 10;
             spyOn(star, "getActiveFactories");
             star.getActiveFactories.andReturn(5);
             expect(star.creditsPerTurn().value).toEqual(10);
@@ -119,7 +120,7 @@ describe("Star", function() {
 
     describe("population", function() {
         it("grows at a cost of " + Star.COST.population + " per unit", function() {
-            star.currentPopulation = 0;
+            star.attributes.population = 0;
             star.budget.population = 1;
             spyOn(star, "getActiveFactories");
             star.getActiveFactories.andReturn(20);
@@ -138,7 +139,7 @@ describe("Star", function() {
 
     describe("industry", function() {
         it("grows at a cost of " + Star.COST.industry + " per unit", function() {
-            star.currentIndustry = 0;
+            star.attributes.population = 0;
             star.budget.industry = 1;
             spyOn(star, "getActiveFactories");
             star.getActiveFactories.andReturn(20);
@@ -152,6 +153,30 @@ describe("Star", function() {
             spyOn(star, "getActiveFactories");
             star.getActiveFactories.andReturn(20);
             expect(star.industryGrowth()).toEqual(4 / Star.COST.industry);
+        });
+    });
+
+    describe("ending the turn", function() {
+        it("increases population", function() {
+            spyOn(star, "populationGrowth").andReturn(5);
+            star.attributes.population = 20;
+            star.endTurn();
+            expect(star.attributes.population).toEqual(25);
+        });
+
+        it("doesn't increase population above the preset limit", function() {
+            star.attributes.maxPopulation = 22;
+            spyOn(star, "populationGrowth").andReturn(5);
+            star.attributes.population = 20;
+            star.endTurn();
+            expect(star.attributes.population).toEqual(22);
+        });
+
+        it("increases factories", function() {
+            spyOn(star, "industryGrowth").andReturn(5);
+            star.attributes.factories = 10;
+            star.endTurn();
+            expect(star.attributes.factories).toEqual(15);
         });
     });
 

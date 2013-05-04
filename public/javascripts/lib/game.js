@@ -57,6 +57,9 @@ Game.prototype.render = function() {
     this.galaxy.render();
 };
 
-Game.prototype.nextTurn = function() {
+Game.prototype.endTurn = function() {
     this.turnCount++;
+    for(var i in this.galaxy.stars) {
+        this.galaxy.stars[i].endTurn();
+    }
 };

@@ -10,7 +10,7 @@
   <section class="stats">
     <dl>
       <dt>Population</dt>
-      <dd><%= currentPopulation %></dd>
+      <dd><%= population %></dd>
       <dt>Bases</dt>
       <dd>0</dd>
     </dl>

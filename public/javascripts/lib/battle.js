@@ -15,7 +15,7 @@ Battle.prototype.setup = function(options) {
     this.setGrid(options.grid.width, options.grid.height);
     this.setFleets();
     this.bind();
-    this.nextTurn();
+    this.endTurn();
 };
 
 Battle.prototype.setGrid = function(width, height) {
@@ -98,10 +98,10 @@ Battle.prototype.takeAction = function(type, location, options) {
     console.log(type);
     console.log(this.currentShip);
     console.log(location);
-    this.nextTurn();
+    this.endTurn();
 };
 
-Battle.prototype.nextTurn = function() {
+Battle.prototype.endTurn = function() {
     // Mark ship as used
     if(this.currentShip) {
         this.currentShip.data.selection.animate({ opacity: 0 }, 300, function() {

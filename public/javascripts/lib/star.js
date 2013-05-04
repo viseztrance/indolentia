@@ -11,7 +11,7 @@ function Star(attributes) {
 
     this.attributes = {
         maxPopulation: 0,
-        currentPopulation: 0,
+        population: 0,
         factories: 0,
         credits: 0
     };
@@ -38,7 +38,7 @@ Star.TYPES = {
 
 Star.HOMEWORLD = {
     maxPopulation: 100,
-    currentPopulation: 50,
+    population: 50,
     factories: 15,
     type: "yellow",
     reachable: true
@@ -69,7 +69,7 @@ Star.prototype.setPlayer = function(player) {
 Star.prototype.creditsPerTurn = function() {
     var that = this;
     var credits = {
-        value: Star.INCOME.population * this.currentPopulation + Star.INCOME.industry * this.getActiveFactories()
+        value: Star.INCOME.population * this.attributes.population + Star.INCOME.industry * this.getActiveFactories()
     };
     for(var key in that.budget) {
         (function() {
@@ -92,7 +92,7 @@ Star.prototype.industryGrowth = function() {
 };
 
 Star.prototype.getActiveFactories = function() {
-    return this.factories || 0;
+    return this.attributes.factories || 0;
 };
 
 Star.prototype.create = function() {
@@ -135,6 +135,12 @@ Star.prototype.render = function() {
             });
         }
     }
+};
+
+Star.prototype.endTurn = function() {
+    this.attributes.population = Math.min(this.attributes.population + this.populationGrowth(),
+                                          this.attributes.maxPopulation);
+    this.attributes.factories += this.industryGrowth();
 };
 
 Star.prototype.events = {
