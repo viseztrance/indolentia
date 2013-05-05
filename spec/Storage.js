@@ -22,6 +22,13 @@ describe("MemoryStore", function() {
                 MemoryStore.save("circular", a);
             }).not.toThrow();
         });
+
+        it("filters data through a callback", function() {
+            MemoryStore.save("say", { hello: "world" }, function(object) {
+                return object == "world" ? "everyone" : object;
+            });
+            expect(localStorage["say"]).toEqual('{"hello":"everyone","__reference__":"r1","__klass__":"Object"}');
+        });
     });
 
     describe("Retrieving", function() {

@@ -1,9 +1,11 @@
 var MemoryStore = {
 
-    save: function(key, object) {
-        var i = 0;
+    save: function(key, object, filter) {
+        var i = 0,
+            data = [];
 
         localStorage[key] = JSON.stringify(object, function(k, value) {
+            if(filter) value = filter(value);
             if(typeof(value) == "object" && !(value instanceof Array)) {
                 if(value.__klass__) { // Recursion
                     return { $reference: value.__reference__ };
@@ -11,16 +13,22 @@ var MemoryStore = {
                     value.__reference__ = "r" + String(++i); // Set an identifier (keys can't be integers)
                     value.__klass__ = MemoryStore.getClassName(value);
                 }
+                data.push(value);
             }
             return value;
-
         });
+        // Clean objects
+        for(var j in data) {
+            delete data[j].__klass__;
+            delete data[j].__reference__;
+            delete data[j].$reference;
+        }
     },
 
     read: function(key) {
         if(localStorage[key]) {
             var values = {},
-                references = {};
+                references = [];
             var data = JSON.parse(localStorage[key], function(k, value) {
                 if(typeof(value) == "object") {
                     if(value.__klass__) {
@@ -34,11 +42,11 @@ var MemoryStore = {
                             // Because objects are passed by reference rather than value,
                             // let's leverage this by storing the parent and the attribute that matches
                             // our circular reference
-                            references[value[i].$reference] = {
+                            references.push({
                                 parent: value,
                                 attribute: i,
                                 reference: value[i].$reference
-                            };
+                            });
                         }
                     }
                 }
@@ -46,7 +54,7 @@ var MemoryStore = {
             });
             for(var i in references) {
                 // Replace the circular reference in the parent so all objects are modified
-                references[i].parent[references[i].attribute] = values[i];
+                references[i].parent[references[i].attribute] = values[references[i].reference];
             }
             return data;
         } else {
