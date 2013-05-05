@@ -11,7 +11,7 @@ describe("MemoryStore", function() {
     describe("Saving", function() {
         it("serializes data into localStorage", function() {
             MemoryStore.save("say", { hello: "world" });
-            expect(localStorage["say"]).toEqual('{"hello":"world","__klass__":"Object"}');
+            expect(localStorage["say"]).toEqual('{"hello":"world","__reference__":"r1","__klass__":"Object"}');
         });
 
         it("serializes circular dependencies", function() {
@@ -66,7 +66,7 @@ describe("MemoryStore", function() {
             MemoryStore.save("say", { hello: "world" });
             MemoryStore.save("whisper", { goodbye: "world" });
             MemoryStore.delete("say");
-            expect(localStorage["whisper"]).toEqual('{"goodbye":"world","__klass__":"Object"}');
+            expect(localStorage["whisper"]).toEqual('{"goodbye":"world","__reference__":"r1","__klass__":"Object"}');
         });
     });
 
