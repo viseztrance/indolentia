@@ -92,7 +92,7 @@ Star.prototype.industryGrowth = function() {
 };
 
 Star.prototype.getActiveFactories = function() {
-    return this.attributes.factories || 0;
+    return Math.floor(this.attributes.factories) || 0;
 };
 
 Star.prototype.create = function() {

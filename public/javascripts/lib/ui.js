@@ -31,13 +31,30 @@ UI.prototype.modules = {
             preview: preview,
             player: star.player || false,
             currentPlayer: star.player == currentPlayer,
-            explored: currentPlayer.exploredStars.indexOf(star) != -1
+            explored: currentPlayer.exploredStars.indexOf(star) != -1,
+            activeFactories: star.getActiveFactories()
         };
         var args = $.extend({}, star.attributes, defaults);
         var template = new Template("star").process(args);
         this.info.html(template);
+
+        for(var i in star.budget) {
+            $("input.slider[name=" + i + "]").val(star.budget[i] * 100);
+        }
         $("input.slider").slide({
-            equalize: true
+            equalize: true,
+            change: function() {
+                $("input.slider").each(function(i, item) {
+                    star.budget[$(item).attr("name")] = $(item).val() / 100;
+                });
+                star.galaxy.game.save();
+            }
+        });
+
+        $("#end-turn").click(function() {
+            // Refresh sidebar at the end of turn
+            star.galaxy.game.endTurn();
+            return false;
         });
     }
 };

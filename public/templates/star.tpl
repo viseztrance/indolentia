@@ -10,13 +10,13 @@
   <section class="stats">
     <dl>
       <dt>Population</dt>
-      <dd><%= population %></dd>
+      <dd><%= Math.floor(population) %></dd>
       <dt>Bases</dt>
       <dd>0</dd>
     </dl>
     <dl>
       <dt>Production</dt>
-      <dd><%= factories %></dd>
+      <dd><%= activeFactories %></dd>
     </dl>
   </section>
 
@@ -24,28 +24,32 @@
     <ul>
       <li>
         <label>Ship</label>
-        <input type="text" class="slider" name="test" value="15" />
+        <input type="text" class="slider" name="ship" value="" />
       </li>
 
       <li>
         <label>Defence</label>
-        <input type="text" class="slider" name="test" value="19" />
+        <input type="text" class="slider" name="defence" value="" />
       </li>
 
       <li>
         <label>Industry</label>
-        <input type="text" class="slider" name="test" value="25" />
+        <input type="text" class="slider" name="industry" value="" />
       </li>
 
       <li>
         <label>Ecology</label>
-        <input type="text" class="slider" name="test" value="36" />
+        <input type="text" class="slider" name="population" value="" />
       </li>
 
       <li>
         <label>Tech</label>
-        <input type="text" class="slider" name="test" value="5" />
+        <input type="text" class="slider" name="technology" value="" />
       </li>
     </ul>
   </section>
 <% } %>
+
+<p>
+  <a href="#" id="end-turn">Next turn</a>
+</p>

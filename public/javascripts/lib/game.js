@@ -62,4 +62,11 @@ Game.prototype.endTurn = function() {
     for(var i in this.galaxy.stars) {
         this.galaxy.stars[i].endTurn();
     }
+    if(this.onEndTurn) {
+        this.onEndTurn();
+    }
+};
+
+Game.prototype.save = function() {
+    // Override method to add functionality
 };

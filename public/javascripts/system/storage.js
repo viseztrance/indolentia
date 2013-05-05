@@ -10,7 +10,7 @@ var MemoryStore = {
                 if(value.__klass__) { // Recursion
                     return { $reference: value.__reference__ };
                 } else {
-                    value.__reference__ = "r" + String(++i); // Set an identifier (keys can't be integers)
+                    value.__reference__ = "r" + String(++i); // Set an identifier (keys can't be numbers, including typecasted strings)
                     value.__klass__ = MemoryStore.getClassName(value);
                 }
                 data.push(value);

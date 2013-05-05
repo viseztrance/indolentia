@@ -7,6 +7,20 @@ $(function() {
         MemoryStore.save("game", game);
     }
     game.render();
+    game.save = function() {
+        MemoryStore.save("game", game, function(object) {
+            if(typeof(object) == "object") {
+                var klassName = MemoryStore.getClassName(object);
+                // Avoid serializing third party objects
+                if(!klassName || klassName.match(/svg/i)) return false;
+            }
+            return object;
+        });
+    };
+    game.onEndTurn = function() {
+        game.save();
+        UI.getInstance().render(game.galaxy.currentStar);
+    };
 
     UI.getInstance().set({
         info: $("aside.info")

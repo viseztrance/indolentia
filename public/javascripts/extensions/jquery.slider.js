@@ -66,6 +66,7 @@
                     that.setValue(percentage(e), { callback: true });
                 });
             }).mouseup(function() {
+                if(options.change) options.change();
                 $(this).unbind("mousemove");
             });
         };

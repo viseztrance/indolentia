@@ -50,7 +50,7 @@ Galaxy.prototype.render = function() {
 };
 
 Galaxy.prototype.setCurrentStar = function(star) {
-    if(this.currentStar) {
+    if(this.currentStar && this.currentStar.selection) {
         $.proxy(this.currentStar.animations.deselect, this.currentStar)();
     }
     this.currentStar = star;
