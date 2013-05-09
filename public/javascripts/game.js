@@ -3,6 +3,15 @@ $(function() {
 
     if(!game) {
         game = new Game(MemoryStore.read("map"));
+        $.ajax({
+            url: "/data/tech-tree.json",
+            async: false,
+            cache: false,
+            dataType: "json",
+            success: function(entries) {
+                game.technology = Technology.create(entries);
+            }
+        });
         game.create();
         MemoryStore.save("game", game);
     }

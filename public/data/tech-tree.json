@@ -1,0 +1,27 @@
+{
+  "category1": [
+    {
+      "level": 1,
+      "description": "some description",
+      "name": "Some name"
+    },
+    {
+      "level": 2,
+      "description": "some description",
+      "name": "Some name"
+    }
+  ],
+
+  "category2": [
+    {
+      "level": 1,
+      "description": "some description",
+      "name": "Some name"
+    },
+    {
+      "level": 2,
+      "description": "some description",
+      "name": "Some name"
+    }
+  ]
+}
