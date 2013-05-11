@@ -15,7 +15,7 @@ Technology.create = function(entries) {
         if(!technologies[category]) technologies[category] = [];
 
         for(var i in entries[category]) {
-            var entry = new Technology(entries[category][i]);
+            var entry = new Technology(category, entries[category][i]);
             technologies[category].push(entry);
         }
     }

@@ -9,7 +9,7 @@ $(function() {
             cache: false,
             dataType: "json",
             success: function(entries) {
-                game.technology = Technology.create(entries);
+                game.technologies = Technology.create(entries);
             }
         });
         game.create();

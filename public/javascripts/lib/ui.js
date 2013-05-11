@@ -53,7 +53,7 @@ UI.prototype.modules = {
 
         $("#end-turn").click(function() {
             // Refresh sidebar at the end of turn
-            star.galaxy.game.endTurn();
+            star.galaxy.game.currentPlayer.endTurn();
             return false;
         });
     }

@@ -1,6 +1,7 @@
 function Game(options) {
-    this.options = options;
+    this.options   = options;
     this.turnCount = 0;
+    this.players   = [];
 }
 
 Game.prototype.create = function() {
@@ -26,10 +27,16 @@ Game.prototype.setPlayers = function() {
         color: this.options.color,
         race: this.options.race
     });
+    this.currentPlayer.humanControlled = true;
+    this.currentPlayer.game = this;
+    this.currentPlayer.setTechnologies(this.technologies);
     this.currentPlayer.create();
+
     this.players = [this.currentPlayer];
     for(var i = 0; i < this.options.players - 1; i++) {
         var player = new Player();
+        player.game = this;
+        player.setTechnologies(this.technologies);
         player.create();
         this.players.push(player);
     }
@@ -59,11 +66,19 @@ Game.prototype.render = function() {
 
 Game.prototype.endTurn = function() {
     this.turnCount++;
-    for(var i in this.galaxy.stars) {
-        this.galaxy.stars[i].endTurn();
-    }
     if(this.onEndTurn) {
         this.onEndTurn();
+    }
+};
+
+Game.prototype.nextPlayer = function() {
+    var index = this.players.indexOf(this.currentPlayer);
+    var nextPlayer = this.players[index + 1];
+    if(nextPlayer) {
+        nextPlayer.play();
+    } else {
+        this.players[0].play();
+        this.endTurn();
     }
 };
 
