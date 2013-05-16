@@ -60,7 +60,7 @@ describe("Player", function() {
             technologies = { cat1: [technology1, technology2, technology3], cat2: [technology4, technology5] };
         });
 
-        it("makes available defaults available", function() {
+        it("makes defaults available", function() {
             var player = new Player();
             player.setTechnologies(technologies);
             expect(player.technologies.cat1.available).toEqual([technology1, technology3]);
@@ -96,14 +96,63 @@ describe("Player", function() {
                 player.research(technology5);
                 expect(player.technologies.cat2.researchable).toEqual([technology5]);
             });
+
+            describe("being performed", function() {
+                var technology, game, player;
+
+                beforeEach(function() {
+                    technology = new Technology("weapons", { level: 1 });
+                    game = new Game();
+                    player = new Player();
+                    player.researchBudget.weapons = 0.2;
+                    player.game = game;
+                    spyOn(game, "nextPlayer"); // Let's avoid recursion
+                    spyOn(player, "creditsPerTurn").andReturn({ research: 100 });
+                    player.setTechnologies({ weapons: [technology] });
+                    player.research(technology);
+                });
+
+                it("increases research funds", function() {
+                    spyOn(technology, "cost").andReturn(80);
+                    player.performResearch();
+                    expect(player.technologies.weapons.researching.credits).toEqual(20);
+                    player.performResearch();
+                    expect(player.technologies.weapons.researching.credits).toEqual(40);
+                });
+
+                describe("on finish", function() {
+                    beforeEach(function() {
+                        spyOn(technology, "cost").andReturn(15);
+                    });
+
+                    it("substracts raised credits from the technology cost", function() {
+                        player.performResearch();
+                        expect(player.technologies.weapons.researching.credits).toEqual(5);
+                    });
+
+                    it("moves current item from the researching pool to the researched", function() {
+                        expect(player.technologies.weapons.available).toEqual([]);
+                        player.performResearch();
+                        expect(player.technologies.weapons.researching.item).toBeFalsy();
+                        expect(player.technologies.weapons.available).toEqual([technology]);
+                    });
+                });
+            });
         });
     });
 
     describe("ending the turn", function() {
+        var game, player;
+
+        beforeEach(function() {
+            game = new Game();
+            player = new Player();
+            player.game = game;
+            spyOn(game, "nextPlayer"); // To avoid recursion, if no human players are present this method should always be stubbed
+        });
+
         it("ends the turn for each player owned star", function() {
-            var player = new Player();
             spyOn(player, "play");
-            player.game = new Game();
             player.game.players = [player];
             player.ownedStars = [new Star(), new Star()];
             for(var i in player.ownedStars) {
@@ -116,16 +165,94 @@ describe("Player", function() {
         });
 
         it("passes control to the next player", function() {
-            var game = new Game();
-            var player = new Player();
-            player.game = game;
-            spyOn(game, "nextPlayer");
             player.endTurn();
             expect(game.nextPlayer.callCount).toEqual(1);
         });
 
-        xit("increases current research funds", function() {
+        it("performs research", function() {
+            spyOn(player, "performResearch");
+            player.endTurn();
+            expect(player.performResearch.callCount).toEqual(1);
+        });
+    });
 
+    describe("credits", function() {
+        it("scales with budget", function() {
+            var player = new Player(),
+                star = new Star();
+            star.budget = { ships: 0.4, population: 0.3, defence: 0.3 };
+            player.ownedStars = [star];
+            spyOn(star, "calculateCredits").andReturn(120);
+            var credits = player.creditsPerTurn();
+            expect(credits.ships).toEqual(48);
+            expect(credits.population).toEqual(36);
+            expect(credits.defence).toEqual(36);
+        });
+
+        it("scales with the number of stars", function() {
+            var player = new Player();
+            var star1 = new Star(),
+                star2 = new Star();
+            star1.budget = { ships: 0.2, population: 0.5, defence: 0.3 };
+            star2.budget = { ships: 0.4, population: 0.6, defence: 0 };
+            spyOn(star1, "calculateCredits").andReturn(120);
+            spyOn(star2, "calculateCredits").andReturn(60);
+            player.ownedStars = [star1, star2];
+            var credits = player.creditsPerTurn();
+            expect(credits.ships).toEqual(48);
+            expect(credits.population).toEqual(96);
+            expect(credits.defence).toEqual(36);
+        });
+    });
+
+    describe("budget allocation", function() {
+        var player, credits;
+        beforeEach(function() {
+            player = new Player();
+            credits = player.researchPerTurn();
+            credits.value = 180;
+        });
+
+        it("has a percentage assigned for computers", function() {
+            player.researchBudget.computers = 0.3;
+            expect(credits.forComputers()).toEqual(54);
+            player.researchBudget.computers = 0.5;
+            expect(credits.forComputers()).toEqual(90);
+        });
+
+        it("has a percentage assigned for construction", function() {
+            player.researchBudget.construction = 0.3;
+            expect(credits.forConstruction()).toEqual(54);
+            player.researchBudget.construction = 0.5;
+            expect(credits.forConstruction()).toEqual(90);
+        });
+
+        it("has a percentage assigned for shields", function() {
+            player.researchBudget.shields = 0.3;
+            expect(credits.forShields()).toEqual(54);
+            player.researchBudget.shields = 0.5;
+            expect(credits.forShields()).toEqual(90);
+        });
+
+        it("has a percentage assigned for planetology", function() {
+            player.researchBudget.planetology = 0.3;
+            expect(credits.forPlanetology()).toEqual(54);
+            player.researchBudget.planetology = 0.5;
+            expect(credits.forPlanetology()).toEqual(90);
+        });
+
+        it("has a percentage assigned for propulsion", function() {
+            player.researchBudget.propulsion = 0.3;
+            expect(credits.forPropulsion()).toEqual(54);
+            player.researchBudget.propulsion = 0.5;
+            expect(credits.forPropulsion()).toEqual(90);
+        });
+
+        it("has a percentage assigned for weapons", function() {
+            player.researchBudget.weapons = 0.3;
+            expect(credits.forWeapons()).toEqual(54);
+            player.researchBudget.weapons = 0.5;
+            expect(credits.forWeapons()).toEqual(90);
         });
     });
 });

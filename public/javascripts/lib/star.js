@@ -66,15 +66,19 @@ Star.prototype.setPlayer = function(player) {
     this.player.ownedStars.push(this);
 };
 
+Star.prototype.calculateCredits = function() {
+    return Star.INCOME.population * this.attributes.population + Star.INCOME.industry * this.getActiveFactories();
+};
+
 Star.prototype.creditsPerTurn = function() {
     var that = this;
     var credits = {
-        value: Star.INCOME.population * this.attributes.population + Star.INCOME.industry * this.getActiveFactories()
+        value: this.calculateCredits()
     };
     for(var key in that.budget) {
         (function() {
             var name = key,
-                reader = "for" + key.charAt(0).toUpperCase() + name.slice(1, 10);
+                reader = "for" + key.charAt(0).toUpperCase() + name.slice(1, name.length);
             credits[reader] = function() {
                 return that.budget[name] * this.value;
             };

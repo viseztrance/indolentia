@@ -29,20 +29,6 @@ describe("Game", function() {
             game.endTurn();
             expect(game.turnCount).toEqual(2);
         });
-
-        // TODO: revise this, may need to be removed
-        xit("ends player turn", function() {
-            var game = new Game(options);
-            game.create();
-
-            for(var i in game.players) {
-                spyOn(game.players[i], "endTurn");
-            }
-            game.endTurn();
-            for(var j in game.players) {
-                expect(game.players[j].endTurn.callCount).toEqual(1);
-            }
-        });
     });
 
     describe("next player", function() {

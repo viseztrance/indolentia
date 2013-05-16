@@ -4,6 +4,14 @@ function Player(attributes) {
     this.exploredStars   = [];
     this.technologies    = {};
     this.humanControlled = false;
+    this.researchBudget  = {
+        computers: 0,
+        construction: 0,
+        shields: 0,
+        planetology: 0,
+        propulsion: 1,
+        weapons: 0
+    };
 }
 
 Player.colors = ["red", "green", "yellow"];
@@ -72,5 +80,57 @@ Player.prototype.endTurn = function() {
     for(var i in this.ownedStars) {
         this.ownedStars[i].endTurn();
     }
+    this.performResearch();
     this.game.nextPlayer();
+};
+
+Player.prototype.performResearch = function() {
+    var credits = this.researchPerTurn();
+
+    for(var name in this.researchBudget) {
+        if(this.technologies[name]) {
+            var reader = name.charAt(0).toUpperCase() + name.slice(1, name.length);
+            this.technologies[name].researching.credits += credits["for" + reader]();
+            var technology = this.technologies[name].researching.item;
+            // Enough credits raised for current research
+            if(technology && this.technologies[name].researching.credits >= technology.cost()) {
+                this.technologies[name].researching.credits -= technology.cost(); // Substract current cost
+                this.technologies[name].researching.item = undefined; // Remove item from currently researching
+                this.technologies[name].available.push(technology); // Add item to the available (researched) stack
+            }
+        }
+    }
+};
+
+Player.prototype.creditsPerTurn = function() {
+    var budget = {};
+
+    for(var i in this.ownedStars) {
+        var credits = this.ownedStars[i].creditsPerTurn();
+
+        for(var name in this.ownedStars[i].budget) {
+            if(!budget.hasOwnProperty(name)) budget[name] = 0;
+
+            var reader = name.charAt(0).toUpperCase() + name.slice(1, name.length);
+            budget[name] += credits["for" + reader]();
+        }
+    }
+    return budget;
+};
+
+Player.prototype.researchPerTurn = function() {
+    var that = this;
+    var credits = {
+        value: this.creditsPerTurn().research
+    };
+    for(var key in that.researchBudget) {
+        (function() {
+            var name = key,
+                reader = "for" + key.charAt(0).toUpperCase() + name.slice(1, key.length);
+            credits[reader] = function() {
+                return that.researchBudget[name] * this.value;
+            };
+        })();
+    }
+    return credits;
 };
