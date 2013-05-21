@@ -48,6 +48,11 @@ UI.prototype.modules = {
                     star.budget[$(item).attr("name")] = $(item).val() / 100;
                 });
                 star.galaxy.game.save();
+            },
+            load: function(slider) {
+                slider.ui.wrapper.siblings("label").click(function() {
+                    slider.isFrozen() ? slider.unfreeze() : slider.freeze();
+                });
             }
         });
 

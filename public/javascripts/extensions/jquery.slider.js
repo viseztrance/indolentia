@@ -31,7 +31,7 @@
                 return false;
             };
 
-            this.ui.increment.mousedown(function(){
+            this.ui.increment.mousedown(function() {
                 timer = setInterval(function() {
                     that.increment();
                 }, 20);
@@ -55,20 +55,24 @@
             });
 
             this.ui.bar.mousedown(function(e) {
-                var percentage = function(e) {
-                    var position = e.pageX - that.ui.bar.offset().left,
-                        width = that.ui.bar.width();
-                    return parseInt(position / width * 100, 10);
-                };
-                var animation = that.setValue(percentage(e), { animate: true, callback: true });
-                $(this).mousemove(function(e) {
-                    animation.stop();
-                    that.setValue(percentage(e), { callback: true });
-                });
+                if(!that.isFrozen()) {
+                    var percentage = function(e) {
+                        var position = e.pageX - that.ui.bar.offset().left,
+                            width = that.ui.bar.width();
+                        return parseInt(position / width * 100, 10);
+                    };
+                    var animation = that.setValue(percentage(e), { animate: true, callback: true });
+                    $(this).mousemove(function(e) {
+                        animation.stop();
+                        that.setValue(percentage(e), { callback: true });
+                    });
+                }
             }).mouseup(function() {
                 if(options.change) options.change();
                 $(this).unbind("mousemove");
             });
+
+            if(options.load) options.load(this);
         };
 
         Slider.prototype.setValue = function(value, options) {
@@ -88,15 +92,33 @@
         };
 
         Slider.prototype.increment = function() {
-            var value = Math.min(this.getValue() + 1, 100);
-            this.setValue(value, { callback: true });
+            if(!this.isFrozen()) {
+                var value = Math.min(this.getValue() + 1, 100);
+                this.setValue(value, { callback: true });
+            }
             return false;
         };
 
         Slider.prototype.decrement = function() {
-            var value = Math.max(this.getValue() - 1, 0);
-            this.setValue(value, { callback: true });
+            if(!this.isFrozen()) {
+                var value = Math.max(this.getValue() - 1, 0);
+                this.setValue(value, { callback: true });
+            }
             return false;
+        };
+
+        Slider.prototype.freeze = function() {
+            this.frozen = true;
+            this.ui.wrapper.addClass("frozen");
+        };
+
+        Slider.prototype.unfreeze = function() {
+            this.frozen = false;
+            this.ui.wrapper.removeClass("frozen");
+        };
+
+        Slider.prototype.isFrozen = function() {
+            return this.frozen;
         };
 
         var sliders = [];
@@ -111,13 +133,25 @@
         if(options.equalize) {
             this.change(function() {
                 var that = this,
-                    sum = 0;
+                    sum = 0,
+                    max = 100;
                 $.each(sliders, function(i, slider) {
-                    sum += sliders[i].getValue();
+                    if(slider.isFrozen()) {
+                        max -= slider.getValue();
+                    } else {
+                        sum += slider.getValue();
+                    }
                 });
-                var offset = sum - 100;
+                var offset = sum - max;
+                $.each(sliders, function(i, slider) {
+                    if(!slider.isFrozen()) {
+                        slider.ui.fill.css("max-width", String(max) + "%");
+                    }
+                });
                 if(offset) {
                     $.each(sliders, function(i, slider) {
+                        if(slider.isFrozen()) return true;
+
                         if(slider.input.get(0) != that) {
                             var initial = slider.getValue(),
                                 value = 0;
@@ -131,9 +165,9 @@
                                 }
                             } else {
                                 value = slider.getValue() + Math.abs(offset);
-                                slider.setValue(Math.min(100, value));
-                                if(value > 100) {
-                                    offset += (value - 100);
+                                slider.setValue(Math.min(max, value));
+                                if(value > max) {
+                                    offset += (value - max);
                                 } else {
                                     return false;
                                 }
