@@ -133,6 +133,7 @@ describe("Star", function() {
             star.budget.population = 0.2;
             spyOn(star, "getActiveFactories");
             star.getActiveFactories.andReturn(20);
+            star.attributes.waste = 0;
             expect(star.populationGrowth()).toEqual(4 / Star.COST.population);
         });
     });
@@ -178,6 +179,43 @@ describe("Star", function() {
             star.endTurn();
             expect(star.attributes.factories).toEqual(15);
         });
+
+        it("increases waste", function() {
+            star.attributes.waste = 12;
+            spyOn(star, "getActiveFactories").andReturn(20);
+            expect(star.wasteGrowth()).toEqual(10);
+            star.endTurn();
+            expect(star.attributes.waste).toEqual(22);
+        });
+        /////
+        it("kills off 1(one) population unit each turn after accumulated waste reaches critical mass", function() {
+            star.attributes.maxPopulation = 100;
+            star.attributes.waste = 120;
+            star.endTurn();
+            expect(star.attributes.population).toEqual(99);
+        });
+        /////
+        // it("reduces ecospending to eliminate waste", function() {
+        //     star.attributes.maxPopulation = 100;
+        //     star.attributes.waste = 120;
+        //     star.endTurn();
+        //     expect(star.attributes.waste).toEqual(99);
+        // });
+        /////
+        // it("stops killing population when maxPopulation is down to 15%", function() {
+        //     star.attributes.factories = 20;
+        //     star.attributes.waste = 12;
+        //     star.endTurn();
+        //     expect(star.attributes.waste).toEqual(22);
+        // });
     });
+            // 5 BC in ecospending should remove 5 waste
+            // accumulated waste kills population
+
+            // FUN FACTS about waste (Fallout influence?)
+                // waste is produced by factories
+                // waste removal costs BC from ecospending
+                // waste accumulates over time if it's not removed
+                // waste in large quantities reduces maximum planet population
 
 });
