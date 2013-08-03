@@ -56,7 +56,6 @@ Star.INCOME = {
     industry: 1
 };
 
-//////
 Star.MULTIPLIER = {
     waste: 0.5 // unitati fizice produse/fabrica, nu BC; poate scadea in functie de tehnologii
 };

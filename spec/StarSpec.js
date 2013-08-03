@@ -132,6 +132,8 @@ describe("Star", function() {
         it("has growth hindered by budget", function() {
             star.budget.population = 0.2;
             spyOn(star, "getActiveFactories");
+            spyOn(star, "wasteGrowth");
+            star.wasteGrowth.andReturn(0);
             star.getActiveFactories.andReturn(20);
             star.attributes.waste = 0;
             expect(star.populationGrowth()).toEqual(4 / Star.COST.population);
@@ -185,14 +187,15 @@ describe("Star", function() {
             spyOn(star, "getActiveFactories").andReturn(20);
             expect(star.wasteGrowth()).toEqual(10);
             star.endTurn();
-            expect(star.attributes.waste).toEqual(22);
+            expect(star.attributes.waste).toEqual(16);
         });
-        /////
+
         it("kills off 1(one) population unit each turn after accumulated waste reaches critical mass", function() {
+            star.attributes.population = 100;
             star.attributes.maxPopulation = 100;
-            star.attributes.waste = 120;
+            star.attributes.waste = 100;
             star.endTurn();
-            expect(star.attributes.population).toEqual(99);
+            expect(star.attributes.population).toEqual(95.925);
         });
         /////
         // it("reduces ecospending to eliminate waste", function() {
