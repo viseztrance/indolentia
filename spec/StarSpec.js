@@ -193,24 +193,18 @@ describe("Star", function() {
         it("kills off 1(one) population unit each turn after accumulated waste reaches critical mass", function() {
             star.attributes.population = 100;
             star.attributes.maxPopulation = 100;
-            star.attributes.waste = 100;
+            star.attributes.waste = 110;
             star.endTurn();
-            expect(star.attributes.population).toEqual(95.925);
+            expect(star.attributes.population).toEqual(99);
         });
-        /////
-        // it("reduces ecospending to eliminate waste", function() {
-        //     star.attributes.maxPopulation = 100;
-        //     star.attributes.waste = 120;
-        //     star.endTurn();
-        //     expect(star.attributes.waste).toEqual(99);
-        // });
-        /////
-        // it("stops killing population when maxPopulation is down to 15%", function() {
-        //     star.attributes.factories = 20;
-        //     star.attributes.waste = 12;
-        //     star.endTurn();
-        //     expect(star.attributes.waste).toEqual(22);
-        // });
+
+        it("stops killing population when population is down to 15% of max", function() {
+            star.attributes.population = 13;
+            star.attributes.maxPopulation = 100;
+            star.attributes.waste = 1100;
+            star.endTurn();
+            expect(star.attributes.population).toEqual(13);
+        });
     });
             // 5 BC in ecospending should remove 5 waste
             // accumulated waste kills population
