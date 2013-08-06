@@ -17,6 +17,8 @@
     <dl>
       <dt>Production</dt>
       <dd><%= activeFactories %></dd>
+      <dt>Waste</dt>
+      <dd><%= waste %></dd>
     </dl>
   </section>
 

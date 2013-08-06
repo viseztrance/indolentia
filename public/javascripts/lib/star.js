@@ -57,7 +57,7 @@ Star.INCOME = {
 };
 
 Star.MULTIPLIER = {
-    waste: 0.5 // unitati fizice produse/fabrica, nu BC; poate scadea in functie de tehnologii
+    waste: 0.5  // physical waste units, not cost
 };
 
 Star.prototype.setAttributes = function(attributes) {
@@ -93,28 +93,28 @@ Star.prototype.creditsPerTurn = function() {
     return credits;
 };
 
-//////
 Star.prototype.wasteGrowth = function() {
     return Star.MULTIPLIER.waste * this.getActiveFactories();
 };
 
-//////
 Star.prototype.wasteElimination = function() {
-    this.attributes.waste += this.wasteGrowth();
     var wasteCosts = Star.COST.waste * this.attributes.waste;
     if (wasteCosts <= this.creditsPerTurn().forPopulation()) {
-        this.attributes.waste = 0
+        wasteToEliminate = this.attributes.waste
+    } else {
+        wasteToEliminate = Math.floor(this.creditsPerTurn().forPopulation() / Star.COST.waste)
     }
-    else {
-        this.attributes.waste -= Math.floor(this.creditsPerTurn().forPopulation() / Star.COST.waste)
-    }
-    return Star.COST.waste * this.attributes.waste;
+    return wasteToEliminate;
 };
 
 Star.prototype.populationGrowth = function() {
-    var growth = (this.creditsPerTurn().forPopulation() - this.wasteElimination()) / Star.COST.population;
-    if (this.attributes.waste > this.attributes.maxPopulation && this.attributes.population > (this.attributes.maxPopulation / 100 * 15)) {
-        growth -= 1
+    var growth = (this.creditsPerTurn().forPopulation() - this.wasteElimination() * Star.COST.waste) / Star.COST.population;
+    if (this.attributes.waste > this.attributes.maxPopulation) {
+        if (this.attributes.population <= (this.attributes.maxPopulation / 100 * 15)) {
+            growth = 0
+        } else {
+            growth = -1
+        }
     }
     return growth;
 };
@@ -170,7 +170,7 @@ Star.prototype.render = function() {
 };
 
 Star.prototype.endTurn = function() {
-    // this.attributes.waste += this.wasteGrowth();
+    this.attributes.waste += this.wasteGrowth() - this.wasteElimination();
     this.attributes.population = Math.min(this.attributes.population + this.populationGrowth(),
                                           this.attributes.maxPopulation);
     this.attributes.factories += this.industryGrowth();
