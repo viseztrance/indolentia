@@ -99,10 +99,11 @@ Star.prototype.wasteGrowth = function() {
 
 Star.prototype.wasteElimination = function() {
     var wasteCosts = Star.COST.waste * this.attributes.waste;
+    var wasteToEliminate;
     if (wasteCosts <= this.creditsPerTurn().forPopulation()) {
-        wasteToEliminate = this.attributes.waste
+        wasteToEliminate = this.attributes.waste;
     } else {
-        wasteToEliminate = Math.floor(this.creditsPerTurn().forPopulation() / Star.COST.waste)
+        wasteToEliminate = Math.floor(this.creditsPerTurn().forPopulation() / Star.COST.waste);
     }
     return wasteToEliminate;
 };
