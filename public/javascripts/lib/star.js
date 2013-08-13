@@ -149,7 +149,7 @@ Star.prototype.adjustEcoSpending = function() {
 };
 
 Star.prototype.getActiveFactories = function() {
-    return Math.min((this.attributes.population * Star.MULTIPLIER.factories), (Math.floor(this.attributes.factories) || 0));
+    return Math.floor(Math.min((this.attributes.population * Star.MULTIPLIER.factories), (this.attributes.factories || 0)));
 };
 
 Star.prototype.industryGrowth = function() {
