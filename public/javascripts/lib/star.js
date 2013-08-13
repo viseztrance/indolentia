@@ -135,7 +135,7 @@ Star.prototype.ecoSpending = function() {
 };
 
 Star.prototype.adjustEcoSpending = function() {
-    if ((this.attributes.waste == 0) && (this.attributes.maxPopulation == this.attributes.population)) {
+    if ((this.attributes.waste === 0) && (this.attributes.maxPopulation === this.attributes.population)) {
         var new_budget, budget_difference;
         new_budget = ((this.wasteGrowth() * Star.COST.waste) * this.budget.population) / this.creditsPerTurn().forPopulation();
         new_budget = Math.round(new_budget * 100) / 100;
@@ -149,11 +149,7 @@ Star.prototype.adjustEcoSpending = function() {
 };
 
 Star.prototype.getActiveFactories = function() {
-    if ((this.population * Star.MULTIPLIER.factories) >= this.attributes.factories) {
-        return Math.floor(this.attributes.factories) || 0;
-    } else {
-        return this.population * Star.MULTIPLIER.factories;
-    }
+    return Math.min((this.attributes.population * Star.MULTIPLIER.factories), (Math.floor(this.attributes.factories) || 0));
 };
 
 Star.prototype.industryGrowth = function() {
@@ -205,7 +201,7 @@ Star.prototype.render = function() {
 
 Star.prototype.endTurn = function() {
     this.ecoSpending();
-    this.attributes.factories += this.industryGrowth();
+    this.attributes.factories = Math.min(this.attributes.factories + this.industryGrowth(), this.attributes.maxPopulation * 15);
     this.adjustEcoSpending();
 };
 
