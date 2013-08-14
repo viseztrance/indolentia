@@ -29,14 +29,14 @@ Game.prototype.setPlayers = function() {
     });
     this.currentPlayer.humanControlled = true;
     this.currentPlayer.game = this;
-    this.currentPlayer.setTechnologies(this.technologies);
+    this.currentPlayer.research = new Research(this.technologies);
     this.currentPlayer.create();
 
     this.players = [this.currentPlayer];
     for(var i = 0; i < this.options.players - 1; i++) {
         var player = new Player();
         player.game = this;
-        player.setTechnologies(this.technologies);
+        player.research = new Research(this.technologies);
         player.create();
         this.players.push(player);
     }

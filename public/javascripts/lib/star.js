@@ -145,7 +145,7 @@ Star.prototype.adjustEcoSpending = function() {
             // move the difference to technology if factories are maxed out.
             this.budget.technology += budget_difference;
         }
-    };
+    }
 };
 
 Star.prototype.getActiveFactories = function() {
