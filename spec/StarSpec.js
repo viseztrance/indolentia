@@ -109,20 +109,19 @@ describe("Star", function() {
                 expect(credits.forPopulation()).toEqual(84);
             });
 
-            describe("EcoSpending", function() {
-                it("changes only when waste is 0", function() {
-                    star.budget.population = 0.2;
-                });
-                it("changes only when population is maxed out", function() {
-                    star.budget.population = 0.2;
-                });
-                it("changes allocated budget to population when conditions are met", function() {
-                    star.budget.population = 0.2;
-                });
-                it("changes allocated budget to technology when conditions are met", function() {
-                    star.budget.population = 0.2;
-                });
-            });
+            // describe("EcoSpending", function() {
+            //     it("changes allocated budget from population to technology when conditions are met", function() {
+            //         star.budget.population = 1;
+            //         star.attributes.population = 100;
+            //         star.attributes.waste = 0;
+            //         spyOn(star, "wasteGrowth").andReturn(25);
+            //         star.endTurn();
+            //         expect(star.attributes.waste).toEqual(0);
+            //         expect(star.attributes.population).toEqual(star.attributes.maxPopulation);
+            //         expect(star.budget.population).toEqual(0.5);
+            //         expect(star.budget.technology).toEqual(0.5);
+            //     });
+            // });
 
             it("has a percentage assigned for technology", function() {
                 star.budget.technology = 0.2;
@@ -235,13 +234,4 @@ describe("Star", function() {
             expect(star.attributes.population).toEqual(13);
         });
     });
-            // 5 BC in ecospending should remove 5 waste
-            // accumulated waste kills population
-
-            // FUN FACTS about waste (Fallout influence?)
-                // waste is produced by factories
-                // waste removal costs BC from ecospending
-                // waste accumulates over time if it's not removed
-                // waste in large quantities reduces maximum planet population
-
 });
