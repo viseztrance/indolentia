@@ -57,6 +57,9 @@ Game.prototype.setHomeWorlds = function() {
 };
 
 Game.prototype.render = function() {
+    Scene.entries = this.scenes;
+    Scene.render();
+
     this.map = new Map($("div.map"));
     this.map.create();
 

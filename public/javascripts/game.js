@@ -3,6 +3,7 @@ $(function() {
 
     if(!game) {
         game = new Game(MemoryStore.read("map"));
+        // Load technologies
         $.ajax({
             url: "/data/tech-tree.json",
             async: false,
@@ -12,6 +13,13 @@ $(function() {
                 game.technologies = Technology.create(entries);
             }
         });
+        // Load game scene
+        var content = new Template("layouts/game").process({});
+        var scene = new Scene("game", content);
+        scene.active = true;
+        scene.create();
+        game.scenes = Scene.entries;
+
         game.create();
         MemoryStore.save("game", game);
     }
