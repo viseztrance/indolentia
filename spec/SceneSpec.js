@@ -81,4 +81,27 @@ describe("Scene", function() {
         });
     });
 
+    describe("destroying", function() {
+        var existingScene;
+
+        beforeEach(function() {
+            existingScene = new Scene("luffy", "<h1>This is the content</h1>");
+            existingScene.create();
+            scene.create();
+        });
+
+        it("removes instance from list", function() {
+            expect(Scene.entries.length).toEqual(2);
+            scene.destroy();
+            expect(Scene.entries).not.toContain(scene);
+            expect(Scene.entries.length).toEqual(1);
+        });
+
+        it("sets first entry as active", function() {
+            expect(existingScene.active).toBeFalsy();
+            scene.destroy();
+            expect(existingScene.active).toBeTruthy();
+        });
+    });
+
 });

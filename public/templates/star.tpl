@@ -53,5 +53,5 @@
 <% } %>
 
 <p>
-  <a href="#" id="end-turn">Next turn</a>
+  <a href="#" id="end-turn-link">Next turn</a> | <a href="#" id="research-link">Research</a>
 </p>

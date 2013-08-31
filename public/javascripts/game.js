@@ -13,11 +13,6 @@ $(function() {
                 game.technologies = Technology.create(entries);
             }
         });
-        // Load game scene
-        var content = new Template("layouts/game").process({});
-        var scene = new Scene("game", content);
-        scene.active = true;
-        scene.create();
         game.scenes = Scene.entries;
 
         game.create();
@@ -36,14 +31,6 @@ $(function() {
     };
     game.onEndTurn = function() {
         game.save();
-        UI.getInstance().render(game.galaxy.currentStar);
+        UI.render(game.galaxy.currentStar);
     };
-
-    UI.getInstance().set({
-        info: $("aside.info")
-    });
-
-    game.map.center(game.galaxy.origin[0], game.galaxy.origin[1]);
-    var homeworld = game.currentPlayer.ownedStars[0];
-    $.proxy(homeworld.events.click, homeworld)();
 });

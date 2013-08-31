@@ -8,9 +8,6 @@ describe("Galaxy", function() {
     beforeEach(function() {
         loadFixtures("map.html");
         Star.canvas = Raphael($("#map").get(0), 500, 500);
-        UI.getInstance().set({
-            info: $("aside.info")
-        });
     });
 
     it("creates a star for each entry received", function() {
