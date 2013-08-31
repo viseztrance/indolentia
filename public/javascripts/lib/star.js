@@ -231,15 +231,24 @@ Star.prototype.animations = {
                 y: this.attributes.y_axis + 50
             }, 200, "easeOut");
         }
-        var imagePath = "/images/selection-c3-optimized.svg";
-        this.selection = Star.canvas.image(imagePath, this.attributes.x_axis-6, this.attributes.y_axis-6, 12, 12);
+        // var imagePath = "/images/selection-c3-inner-optimized.svg";
+        // this.selection = Star.canvas.image(imagePath, this.attributes.x_axis-6, this.attributes.y_axis-6, 12, 12);
+        // this.selection.attr({
+        //     "transform": "S5",
+        // });
+        this.selection = Star.canvas.circle(this.attributes.x_axis, this.attributes.y_axis, 40);
         this.selection.attr({
-            "transform": "S5",
+            "stroke": "#28AD50",
+            "stroke-dasharray": "--",//—
+            "stroke-width": 5.7,
+            "stroke-linecap": "square",
+            "stroke-opacity": 0.8
         });
-        var anim = Raphael.animation({
-            "transform": "...r360",
-            }, 20000);
-        this.selection.animate(anim.repeat(Infinity));
+
+        // http://jsfiddle.net/VSAED/52/ - working version, no trembling
+
+        var anim = Raphael.animation({"transform": "...r360"}, 9000).repeat(Infinity);
+        this.selection.animate(anim);
     },
 
     deselect: function() {
