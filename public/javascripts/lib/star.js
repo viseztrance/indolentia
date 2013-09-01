@@ -136,14 +136,14 @@ Star.prototype.ecoSpending = function() {
 
 Star.prototype.adjustEcoSpending = function() {
     if ((this.attributes.waste === 0) && (this.attributes.maxPopulation === this.attributes.population)) {
-        var new_budget, budget_difference;
-        new_budget = ((this.wasteGrowth() * Star.COST.waste) * this.budget.population) / this.creditsPerTurn().forPopulation();
-        new_budget = Math.round(new_budget * 100) / 100;
-        if (new_budget > 0) {
-            budget_difference = this.budget.population - new_budget;
-            this.budget.population = new_budget;
+        var newEcoSpendingBudget, budgetDifference;
+        newEcoSpendingBudget = ((this.wasteGrowth() * Star.COST.waste) * this.budget.population) / this.creditsPerTurn().forPopulation();
+        newEcoSpendingBudget = Math.ceil(newEcoSpendingBudget * 100) / 100;
+        if (newEcoSpendingBudget > 0) {
+            budgetDifference = this.budget.population - newEcoSpendingBudget;
+            this.budget.population = newEcoSpendingBudget;
             // move the difference to technology if factories are maxed out.
-            this.budget.technology += budget_difference;
+            this.budget.technology += budgetDifference;
         }
     }
 };
@@ -229,20 +229,22 @@ Star.prototype.animations = {
         if(this.data.name) {
             this.data.name.animate({
                 y: this.attributes.y_axis + 50
-            }, 200);
+            }, 200, "easeOut");
         }
+        // http://jsfiddle.net/VSAED/52/ - working version, no trembling
 
-        this.selection = Star.canvas.circle(this.attributes.x_axis, this.attributes.y_axis, 50);
+        var imagePath = "/images/selection-c3-inner-optimized.svg";
+        this.selection = Star.canvas.image(imagePath, this.attributes.x_axis-6, this.attributes.y_axis-6, 12, 12);
         this.selection.attr({
-            stroke: "#28AD50",
-            "stroke-dasharray": "-",
-            "stroke-width": 3,
-            "stroke-linecap": "round",
-            "stroke-opacity": 0.8
+            "transform": "S5",
         });
-        this.selection.animate({
-            r: 30
-        }, 200, "easeOut");
+        var anim = Raphael.animation({"transform": "...r360"}, 9000).repeat(Infinity);
+        this.selection.animate(anim);
+
+        // var innerSelectionAnimation = function () {
+        //     this.selection.animate({"transform": "...r360"}, 900, innerSelectionAnimation);
+        // };
+        // innerSelectionAnimation();
     },
 
     deselect: function() {
