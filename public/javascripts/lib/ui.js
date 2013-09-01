@@ -40,7 +40,7 @@ UI.modules = {
         $("#research input.slider").slide({
             equalize: true,
             change: function() {
-                $("input.slider").each(function(i, item) {
+                $("#research input.slider").each(function(i, item) {
                     research.budget[$(item).attr("name")] = $(item).val() / 100;
                 });
                 UI.game.save();
@@ -50,6 +50,11 @@ UI.modules = {
                     slider.isFrozen() ? slider.unfreeze() : slider.freeze();
                 });
             }
+        });
+        $("#research .available nav a").click(function() {
+            $("#research .available").find("nav li, .contents div").removeClass("active");
+            $("#" + $(this).data("content-for") + "-content").add($(this).parents("li")).addClass("active");
+            return false;
         });
     },
     star: function(star) {
@@ -72,7 +77,7 @@ UI.modules = {
         $("#game input.slider").slide({
             equalize: true,
             change: function() {
-                $("input.slider").each(function(i, item) {
+                $("#game input.slider").each(function(i, item) {
                     star.budget[$(item).attr("name")] = $(item).val() / 100;
                 });
                 star.galaxy.game.save();

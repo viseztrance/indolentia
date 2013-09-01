@@ -1,0 +1,36 @@
+#research {
+  background-color: yellow;
+  .wrapper {
+    display: table;
+    width: 100%;
+    section.available, section.researching {
+      display: table-cell;
+      width: 50%;
+    }
+    section.available {
+      nav {
+        ul {
+          li {
+            display: inline-block;
+            padding: 10px;
+            background-color: #ccc;
+            &.active {
+              background-color: #999 !important;
+            }
+          }
+        }
+      }
+      .contents div {
+        display: none;
+        &.active {
+          display: block;
+        }
+      }
+    }
+    section.researching {
+      label {
+        text-transform: capitalize;
+      }
+    }
+  }
+}

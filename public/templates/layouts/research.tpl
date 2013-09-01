@@ -1,27 +1,45 @@
 <h2>Research</h2> <a href="#" class="back">Map</a>
-<ul>
-  <li>
-    <label>Computers</label>
-    <input type="text" class="slider" name="computers" value="" />
-  </li>
-  <li>
-    <label>Construction</label>
-    <input type="text" class="slider" name="construction" value="" />
-  </li>
-  <li>
-    <label>Shields</label>
-    <input type="text" class="slider" name="shields" value="" />
-  </li>
-  <li>
-    <label>Planetology</label>
-    <input type="text" class="slider" name="planetology" value="" />
-  </li>
-  <li>
-    <label>Propulsion</label>
-    <input type="text" class="slider" name="propulsion" value="" />
-  </li>
-  <li>
-    <label>Weapons</label>
-    <input type="text" class="slider" name="weapons" value="" />
-  </li>
-</ul>
+<br />
+
+<div class="wrapper">
+  <section class="available">
+    <nav>
+      <ul>
+      <% for(var name in budget) { %>
+        <li><h4><a href="#" data-content-for="<%= name %>"><%= name %></a></h4></li>
+      <% } %>
+      </ul>
+    </nav>
+
+    <div class="contents">
+      <% for(var name in budget) { %>
+        <div id="<%= name %>-content">
+          <ul>
+          <% for(var i in technologies[name].available) { %>
+            <li>
+              <%= technologies[name].available[i].name %><br />
+              <small><%= technologies[name].available[i].description %></small>
+            </li>
+          <% } %>
+          </ul>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
+  <section class="researching">
+    <ul>
+      <% for(var name in budget) { %>
+        <li>
+          <label><%= name %></label>
+          <input type="text" class="slider" name="<%= name %>" value="" />
+          <p>
+            <%= technologies[name].researching.item.name %> |
+            Lvl: <%= technologies[name].researching.item.level %> |
+            <%= (technologies[name].researching.credits / technologies[name].researching.item.cost()) * 100 %>%
+          </p>
+        </li>
+      <% } %>
+    </ul>
+  </section>
+</div>
