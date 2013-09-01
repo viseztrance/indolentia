@@ -18,10 +18,13 @@ describe("Research", function() {
             expect(research.technologies.cat2.available).toEqual([]);
         });
 
-        it("makes all non defaults researchable", function() {
+        it("researches first non default tech and makes the rest researchable", function() {
             var research = new Research(technologies);
-            expect(research.technologies.cat1.researchable).toEqual([technology2]);
-            expect(research.technologies.cat2.researchable).toEqual([technology4, technology5]);
+            expect(research.technologies.cat1.researching.item).toEqual(technology2);
+            expect(research.technologies.cat1.researchable).toEqual([]);
+
+            expect(research.technologies.cat2.researching.item).toEqual(technology4);
+            expect(research.technologies.cat2.researchable).toEqual([technology5]);
         });
 
         describe("researching", function() {

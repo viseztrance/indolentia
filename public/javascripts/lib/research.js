@@ -20,6 +20,8 @@ function Research(technologies) {
             var technology = technologies[category][i];
             if(technology.default) {
                 this.technologies[category].available.push(technology);
+            } else if(!this.technologies[category].researching.item) {
+                this.technologies[category].researching.item = technology;
             } else {
                 this.technologies[category].researchable.push(technology);
             }
