@@ -30,7 +30,7 @@ var MemoryStore = {
             var values = {},
                 references = [];
             var data = JSON.parse(localStorage[key], function(k, value) {
-                if(typeof(value) == "object") {
+                if(value && typeof(value) == "object") {
                     if(value.__klass__) {
                         value.__proto__ = window[value.__klass__].prototype;
                         values[value.__reference__] = value;
@@ -38,7 +38,7 @@ var MemoryStore = {
                         delete value.__reference__;
                     }
                     for(var i in value) {
-                        if(value[i].$reference) {
+                        if(value[i] && value[i].$reference) {
                             // Because objects are passed by reference rather than value,
                             // let's leverage this by storing the parent and the attribute that matches
                             // our circular reference
