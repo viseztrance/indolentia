@@ -1,12 +1,13 @@
 function Research(technologies) {
     this.technologies = {};
+    var value = 1 / 6;
     this.budget  = {
-        computers: 0,
-        construction: 0,
-        shields: 0,
-        planetology: 0,
-        propulsion: 1,
-        weapons: 0
+        computers:    value,
+        construction: value,
+        shields:      value,
+        planetology:  value,
+        propulsion:   value,
+        weapons:      value
     };
 
     // Set technologies
@@ -19,8 +20,10 @@ function Research(technologies) {
         for(var i in technologies[category]) {
             var technology = technologies[category][i];
             if(technology.default) {
+                // Default entries are already researched
                 this.technologies[category].available.push(technology);
             } else if(!this.technologies[category].researching.item) {
+                // If no technology is being researched, use first entry
                 this.technologies[category].researching.item = technology;
             } else {
                 this.technologies[category].researchable.push(technology);
