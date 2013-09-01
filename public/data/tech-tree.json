@@ -1,33 +1,1015 @@
 {
-    "category1": [
+ "category1": [
         {
-            "level": 1,
-            "description": "some description",
-            "name": "Some name"
+         "level": 1,
+         "description": "some description",
+         "name": "Some name"
         },
         {
-            "level": 1,
-            "description": "some description",
-            "name": "Some name",
-            "default": true
+         "level": 1,
+         "description": "some description",
+         "name": "Some name",
+         "default": true
         },
         {
-            "level": 2,
-            "description": "some description",
-            "name": "Some name"
+         "level": 2,
+         "description": "some description",
+         "name": "Some name"
         }
     ],
 
-    "category2": [
+ "category2": [
         {
-            "level": 1,
-            "description": "some description",
-            "name": "Some name"
+         "level": 1,
+         "description": "some description",
+         "name": "Some name"
         },
         {
-            "level": 2,
-            "description": "some description",
-            "name": "Some name"
+         "level": 2,
+         "description": "some description",
+         "name": "Some name"
         }
-    ]
+    ],
+
+ "computers": [
+        {
+         "level": 1,
+         "description": "Control 2 factories per population",
+         "name": "Robotics Controls 2"
+        },
+        {
+         "level": 1,
+         "description": "Level 1 targeting computer",
+         "name": "Battle Computer Mark 1"
+        },
+        {
+         "level": 1,
+         "description": "Displays enemy ship stats, adds +3 initiative to the equipped ship, and adds 1 to the targeting system of the equipped computer.",
+         "name": "Battle Scanner"
+        },
+        {
+         "level": 2,
+         "description": "Adds 1 level to the missile defense rating of any ship that has it equipped.",
+         "name": "ECM Jammer Mark 1"
+        },
+        {
+         "level": 4,
+         "description": "This technology allows your colonies to detect ships within a distance of 5 from each of your colonies and allows your ships to detect enemy ships at a distance of 1",
+         "name": "Deep Space Scanner"
+        },
+        {
+         "level": 5,
+         "description": "Increases attack rating by two",
+         "name": "Battle Computer Mark II"
+        },
+        {
+         "level": 7,
+         "description": "Increases missile defense rating by two.",
+         "name": "ECM Jammer Mark II"
+        },
+        {
+         "level": 8,
+         "description": "Allows each population unit to control 3 factories.",
+         "name": "Improved Robotic Controls III"
+        },
+        {
+         "level": 10,
+         "description": "Increases attack rating by three",
+         "name": "Battle Computer Mark III"
+        },
+        {
+         "level": 12,
+         "description": "Increases missile defense rating by three",
+         "name": "ECM Jammer Mark III"
+        },
+        {
+         "level": 13,
+         "description": "Allows your colonies to detect enemy ships at a distance of 7 and allows your ships to detect enemy ships at a distance of 2. These scanners also allow you to determine the planet the enemy ships are travelling to and their ETA.",
+         "name": "Improved Space Scanner"
+        },
+        {
+         "level": 15,
+         "description": "Increases attack rating by four.",
+         "name": "Battle Computer Mark IV"
+        },
+        {
+         "level": 17,
+         "description": "Increases missile defense rating by four.",
+         "name": "ECM Jammer Mark IV"
+        },
+        {
+         "level": 18,
+         "description": "Allows each population unit to control 4 factories",
+         "name": "Improved Robotic Controls IV"
+        },
+        {
+         "level": 20,
+         "description": "Increases attack rating by five.",
+         "name": "Battle Computer Mark V"
+        },
+        {
+         "level": 22,
+         "description": "Increases missile defense rating by five.",
+         "name": "ECM Jammer Mark V"
+        },
+        {
+         "level": 23,
+         "description": "Allows your colonies to detect enemy ships at a distance of 9 and allows your ships to detect enemy ships at a distance of 3. Allows you to determine planet size, environment, habitability, and resources at a distance of 9 on the galactic map without having a ship in orbit over the colony.",
+         "name": "Advanced Space Scanner"
+        },
+        {
+         "level": 25,
+         "description": "Increases missile defense rating by six.",
+         "name": "Battle Computer Mark VI"
+        },
+        {
+         "level": 27,
+         "description": "Increases missile defense rating by six.",
+         "name": "ECM Jammer Mark VI"
+        },
+        {
+         "level": 28,
+         "description": "Allows each population unit to control 5 factories.",
+         "name": "Improved Robotic Controls V"
+        },
+        {
+         "level": 30,
+         "description": "Increases attack rating by 7.",
+         "name": "Battle Computer Mark VII"
+        },
+        {
+         "level": 32,
+         "description": "Increases missile defense rating by 7.",
+         "name": "ECM Jammer Mark VII"
+        },
+        {
+         "level": 34,
+         "description": "Allows you to change destination orders of your ships in transit.",
+         "name": "Hyperspace Communications"
+        },
+        {
+         "level": 35,
+         "description": "Increases attack rating by 8.",
+         "name": "Battle Computer Mark VIII"
+        },
+        {
+         "level": 37,
+         "description": "Increases missile defense rating by 8.
+     ",
+         "name": "ECM Jammer Mark VIII"
+        },
+        {
+         "level": 38,
+         "description": "Allows each population unit to control 6 factories.",
+         "name": "Improved Robotic Controls VI"
+        },
+        {
+         "level": 40,
+         "description": "Increases attack rating by 9.",
+         "name": "Battle Computer Mark IX"
+        },
+        {
+         "level": 42,
+         "description": "Increases missile defense rating by 9.",
+         "name": "ECM Jammer Mark IX"
+        },
+        {
+         "level": 45,
+         "description": "Increases attack rating by 10.",
+         "name": "Battle Computer Mark X"
+        },
+        {
+         "level": 46,
+         "description": "Allows all 'direct fire' weapons on the equipped ship to act as if they have the 'armor piercing' quality. This includes pretty much everything except missiles, torpedoes, bombs, and anything that counts as a special system.",
+         "name": "Oracle Interface"
+        },
+        {
+         "level": 47,
+         "description": "Increases missile defense rating by 10.",
+         "name": "ECM Jammer Mark X"
+        },
+        {
+         "level": 48,
+         "description": "Allows each population unit to control 7 factories.",
+         "name": "Improved Robotic Controls VII"
+        },
+        {
+         "level": 49,
+         "description": "Decreases the enemy's attack rating by 2 - 6 each time it is fired.",
+         "name": "Technology Nullifier"
+        },
+        {
+         "level": 50,
+         "description": "Increases attack rating by 11.",
+         "name": "Battle Computer Mark XI"
+        },
+    ],
+
+ "construction": [
+        {
+         "level": 1,
+         "description": "Standard armor for ships and missile bases. Gives small ships 3 hit points, medium ships 18 hit points, large ships 100 hit points, and assault ships 600 hit points. Gives missile bases 15 hit points.",
+         "name": "Titanium Armor"
+        },
+        {
+         "level": 3,
+         "description": "Reduces the cost to construct a factory to 9 BCs.",
+         "name": "Industrial Tech 9"
+        },
+        {
+         "level": 5,
+         "description": "Reduces the pollution by factories to 80% of its original amount.",
+         "name": "Reduced Industrial Waste 80%"
+        },
+        {
+         "level": 8,
+         "description": "Reduces the cost to construct a factory to 8 BCs.",
+         "name": "Industrial Tech 8"
+        },
+        {
+         "level": 10,
+         "description": "Increases the armor protection on ships that equip it by 50% (round down). Adds 5 to ground combat rolls. Replaces titanium armor which really provides no sort of benefit anyway.",
+         "name": "Duralloy Armor"
+        },
+        {
+         "level": 11,
+         "description": "Adds 10 to ground combat rolls.",
+         "name": "Battle Suits"
+        },
+        {
+         "level": 13,
+         "description": "Reduces the cost to construct a factory to 7 BCs.",
+         "name": "Industrial Tech 7"
+        },
+        {
+         "level": 14,
+         "description": "'Heals' each equipped ship 15% of its maximum hit points per turn.",
+         "name": "Automated Repair Unit"
+        },
+        {
+         "level": 15,
+         "description": "Reduces the pollution by factories to 60% of its original amount.",
+         "name": "Reduced Industrial Waste 60%"
+        },
+        {
+         "level": 17,
+         "description": "Increases the armor protection on ships that equip it by 100%. Adds 10 to ground combat rolls. Replaces any other kind of armor on ground combat troops that is lower than itself.",
+         "name": "Zoritum Armor"
+        },
+        {
+         "level": 18,
+         "description": "Reduces the cost to construct a factory to 6 BCs.",
+         "name": "Industrial Tech 6"
+        },
+        {
+         "level": 23,
+         "description": "Reduces the cost to construct a factory to 5 BCs.",
+         "name": "Industrial Tech 5"
+        },
+        {
+         "level": 24,
+         "description": "Adds 20 to ground combat rolls. Replaces Battle Suits.",
+         "name": "Armored Exoskeleton"
+        },
+        {
+         "level": 25,
+         "description": "Reduces pollution by factories to 40% of its original amount.",
+         "name": "Reduced Industrial Waste 40%"
+        },
+        {
+         "level": 26,
+         "description": "Increases the hit points of equipped ships by 150% of the original amount (round down). Adds 15 to ground combat rolls. Replaces any other kind of armor on ground combat troops that is lower than itself.",
+         "name": "Andrium Armor"
+        },
+        {
+         "level": 28,
+         "description": "Reduces the cost to construct a factory to 4 BCs.",
+         "name": "Industrial Tech 4"
+        },
+        {
+         "level": 33,
+         "description": "Reduces the cost to construct a factory to 3 BCs.",
+         "name": "Industrial Tech 3"
+        },
+        {
+         "level": 34,
+         "description": "Increases the hit points of equipped ships by 200% of the original amount. Adds 20 to ground combat rolls. Replaces any other kind of armor on ground combat troops that is lower than itself.",
+         "name": "Tritanium Armor"
+        },
+        {
+         "level": 35,
+         "description": "Reduces pollution by factories to 20% of its original amount.",
+         "name": "Reduced Industrial Waste 20%"
+        },
+        {
+         "level": 36,
+         "description": "'Heals' each equipped ship 30% of its maximum hit points per turn.",
+         "name": "Advanced Damage Control Unit"
+        },
+        {
+         "level": 38,
+         "description": "Reduces the cost to construct a factory to 2 BCs.",
+         "name": "Industrial Tech 2"
+        },
+        {
+         "level": 40,
+         "description": "Adds 30 to ground combat rolls. Replaces Battle Suits and Armored Exoskeleton.",
+         "name": "Powered Armor"
+        },
+        {
+         "level": 42,
+         "description": "Increases the hit points of equipped ships by 250% of the original amount (round down). Adds 25 to ground combat rolls. Replaces any other kind of armor on ground combat troops that is lower than itself.",
+         "name": "Adamantium Armor"
+        },
+        {
+         "level": 45,
+         "description": "Reduces pollution by factories to 0% of its original amount. Completely eliminates all pollution by factories owned.",
+         "name": "Industrial Waste Elimination"
+        },
+        {
+         "level": 50,
+         "description": "Increases the hit points of equipped ships by 300% of the original amount. Adds 30 to ground combat rolls. Replaces any other kind of armor on ground combat troops that is lower than itself.",
+         "name": "Neutronium Armor"
+        },
+    ],
+
+ "force fields": [
+        {
+          "level": 1,
+          "description": "Reduces all damage to equipped targets by 1.",
+          "name": "Class I Deflector Shield"
+        },
+        {
+          "level": 4,
+          "description": "Reduces all damage to equipped targets by 2.",
+          "name": "Class II Deflector Shield"
+        },
+        {
+          "level": 8,
+          "description": "Adds 10 to ground combat rolls.",
+          "name": "Personal Deflector Shield"
+        },
+        {
+          "level": 10,
+          "description": "Reduces all damage to equipped targets by 3.",
+          "name": "Class III Deflector Shield"
+        },
+        {
+          "level": 12,
+          "description": "Reduces all damage done to planetary missile bases by 5 when constructed.",
+          "name": "Class V Planetary Shield"
+        },
+        {
+          "level": 14,
+          "description": "Reduces all damage to equipped targets by 4.",
+          "name": "Class IV Deflector Shield"
+        },
+        {
+          "level": 16,
+          "description": "Pushes away all ships who come within 1 space of the equipped ship, keeping them at a distance of at least 2 in the combat grid.",
+          "name": "Repulsor Beam"
+        },
+        {
+          "level": 20,
+          "description": "Reduces all damage to equipped targets by 5.",
+          "name": "Class V Deflector Shield"
+        },
+        {
+          "level": 21,
+          "description": "Adds 20 to ground combat rolls. Replaces Personal Deflector Shield.",
+          "name": "Personal Absorbtion Shield"
+        },
+        {
+          "level": 22,
+          "description": "Reduces all damage done to planetary missile bases by 10 when constructed.",
+          "name": "Class X Planetary Shield"
+        },
+        {
+          "level": 24,
+          "description": "Reduces all damage to equipped targets by 6.",
+          "name": "Class VI Deflector Shield"
+        },
+        {
+          "level": 27,
+          "description": "When activated, adds 5 to the defense rating of equipped ships. Must be deactivated to fire weapons. Cannot be re",
+          "name": "Cloaking Device"
+        },
+        {
+          "level": 30,
+          "description": "Reduces all damage to equipped targets by 7.",
+          "name": "Class VII Deflector Shield"
+        },
+        {
+          "level": 31,
+          "description": "Has a 75% chance per missile to destroy all missiles connecting with an equipped ship minus 1% per technology level of the missile.",
+          "name": "Zyro Shield"
+        },
+        {
+          "level": 32,
+          "description": "Reduces all damage done to planetary missile bases by 15 when constructed.",
+          "name": "Class XV Planetary Shield"
+        },
+        {
+          "level": 34,
+          "description": "Reduces all damage to equipped targets by 9.",
+          "name": "Class IX Deflector Shield"
+        },
+        {
+          "level": 37,
+          "description": "Removes the target from combat completely for 1 turn. Combat proceeds as if the target didn't exist.",
+          "name": "Stasis Field"
+        },
+        {
+          "level": 38,
+          "description": "Adds 30 to all ground combat rolls. Replaces Personal Deflector Shield and Personal Absorbtion Shield.",
+          "name": "Personal Barrier Shield"
+        },
+        {
+          "level": 40,
+          "description": "Reduces all damage to equipped targets by 11.",
+          "name": "Class XI Deflector Shield"
+        },
+        {
+          "level": 42,
+          "description": "Reduces all damage done to planetary missile bases by 20 when constructed.",
+          "name": "Class XX Planetary Shield"
+        },
+        {
+          "level": 43,
+          "description": "Creates a black hole that instantly sucks in enemy targets. Completely destroys 100% of enemy targets minus 2% per Shield Class of the target.",
+          "name": "Black Hole Generator"
+        },
+        {
+          "level": 44,
+          "description": "Reduces all damage to equipped targets by 13.",
+          "name": "Class 13 Deflector Shields"
+        },
+        {
+          "level": 46,
+          "description": "Has a 100% chance per missile to destroy all missiles connecting with an equipped ship minus 1% per technology level of the missile.",
+          "name": "Lightning Shield"
+        },
+        {
+          "level": 50,
+          "description": "Reduces all damage to equipped targets by 15.",
+          "name": "Class XV Deflector Shield"
+        },
+        {
+          "level": 50,
+          "description": "Increases the hit points of equipped ships by 300% of the original amount. Adds 30 to ground combat rolls. Replaces any other kind of armor on ground combat troops that is lower than itself.",
+          "name": "Neutronium Armor"
+        },
+    ],
+ "planetology": [
+        {
+           "level": 1,
+           "description": "Eliminates 2 units of pollution for 1 BC.",
+           "name": "Ecological Restoration"
+        },
+        {
+           "level": 2,
+           "description": "Increases maximum colonist units on the terraformed planet by 10, for a cost of 50 BC.",
+           "name": "Terraforming +10"
+        },
+        {
+           "level": 3,
+           "description": "Allows ships equipped with this to sacrifice themselves to create a colony on a planet with a barren or better environment.",
+           "name": "Controlled Barren Environment"
+        },
+        {
+           "level": 5,
+           "description": "Eliminates 3 units of pollution for 1 BC.",
+           "name": "Improved Ecological Restoration"
+        },
+        {
+           "level": 6,
+           "description": "Allows ships equipped with this to sacrifice themselves to create a colony on a planet with a tundra or better environment.",
+           "name": "Controlled Tundra Environment"
+        },
+        {
+           "level": 9,
+           "description": "Increases maximum colonist units on the terraformed planet by 20, for a cost of 100 BC.",
+           "name": "Terraforming +20"
+        },
+        {
+           "level": 10,
+           "description": "Allows ships equipped with this to sacrifice themselves to create a colony on a planet with a dead or better environment.",
+           "name": "Controlled Dead Environment"
+        },
+        {
+           "level": 11,
+           "description": "Ship weapon that reduces the maximum population of a planet by 1 each time it is fired. This is not affected by shields.",
+           "name": "Death Spores"
+        },
+        {
+           "level": 12,
+           "description": "Allows ships equipped with this to sacrifice themselves to create a colony on a planet with a inferno or better environment.",
+           "name": "Controlled Inferno Environment"
+        },
+        {
+           "level": 13,
+           "description": "Eliminates 5 units of pollution for 1 BC.",
+           "name": "Enhanced Ecological Restoration"
+        },
+        {
+           "level": 14,
+           "description": "Increases maximum colonist units on the terraformed planet by 30, for a cost of 150 BC.",
+           "name": "Terraforming +30"
+        },
+        {
+           "level": 15,
+           "description": "Allows ships equipped with this to sacrifice themselves to create a colony on a planet with a Toxic or better environment.",
+           "name": "Controlled Toxic Environment"
+        },
+        {
+           "level": 16,
+           "description": "Converts normal environments to fertile environments for a cost of 150 BC. Increases the base size of the planet by 25%.",
+           "name": "Soil Enrichment"
+        },
+        {
+           "level": 17,
+           "description": "Reduces the damage to population from all death weapons by 1.",
+           "name": "Bio Toxin Antidote"
+        },
+        {
+           "level": 18,
+           "description": "Allows ships equipped with this to sacrifice themselves to create a colony on a planet with a radiated or better environment.",
+           "name": "Controlled Radiated Environment"
+        },
+        {
+           "level": 20,
+           "description": "Increases maximum colonist units on the terraformed planet by 40, for a cost of 200 BC.",
+           "name": "Terraforming +40"
+        },
+        {
+           "level": 21,
+           "description": "Reduces the cost to create one unit of population to 10 BC.",
+           "name": "Cloning"
+        },
+        {
+           "level": 22,
+           "description": "Converts hostile environments to normal environments for a cost of 150 BCs.",
+           "name": "Atmospheric Terraforming"
+        },
+        {
+           "level": 24,
+           "description": "Eliminates 10 units of pollution for 1 BC.",
+           "name": "Advanced Ecological Restoration"
+        },
+        {
+           "level": 26,
+           "description": "Increases maximum colonist units on the terraformed planet by 50, for a cost of 250 BC.",
+           "name": "Terraforming +50"
+        },
+        {
+           "level": 27,
+           "description": "Ship weapon that reduces the maximum population of a planet by 2 each time it is fired. This is not affected by shields.",
+           "name": "Doom Virus"
+        },
+        {
+           "level": 30,
+           "description": "Converts fertile environments to gaia environments for a cost of 300 BC. Increases the base size of the planet by 50%.",
+           "name": "Advanced Soil Enrichment"
+        },
+        {
+           "level": 32,
+           "description": "Increases maximum colonist units on the terraformed planet by 60, for a cost of 300 BC.",
+           "name": "Terraforming +60"
+        },
+        {
+           "level": 34,
+           "description": "Eliminates 20 units of pollution for 1 BC.",
+           "name": "Complete Ecological Restoration"
+        },
+        {
+           "level": 36,
+           "description": "Reduces the damage to population from all death weapons by 2.",
+           "name": "Universal Antidote"
+        },
+        {
+           "level": 38,
+           "description": "Increases maximum colonist units on the terraformed planet by 80, for a cost of 400 BC.",
+           "name": "Terraforming +80"
+        },
+        {
+           "level": 40,
+           "description": "Ship weapon that reduces the maximum population of a planet by 3 each time it is fired. This is not affected by shields.",
+           "name": "Bio Terminator"
+        },
+        {
+           "level": 42,
+           "description": "Reduces the cost to create one unit of population to 5 BC.",
+           "name": "Cloning"
+        },
+        {
+           "level": 44,
+           "description": "Increases maximum colonist units on the terraformed planet by 100, for a cost of 500 BC.",
+           "name": "Terraforming +100"
+        },
+        {
+           "level": 50,
+           "description": "Increases maximum colonist units on the terraformed planet by 120, for a cost of 600 BC.",
+           "name": "Complete Terraforming"
+        },
+    ],
+ "propulsion": [
+        {
+           "level": 1,
+           "description": "Allows equipped ships to travel at 1 parsec per turn and gives a maximum number of movement squares in space combat of 1.",
+           "name": "Retro Engines"
+        },
+        {
+           "level": 2,
+           "description": "Allows all ships to move a distance of 4 away from the owner's colonies.",
+           "name": "Hydrogen Fuel Cells"
+        },
+        {
+           "level": 5,
+           "description": "Allows all ships to move a distance of 5 away from the owner's colonies.",
+           "name": "Deutrium Fuel Cells"
+        },
+        {
+           "level": 6,
+           "description": "Allows equipped ships to travel at 2 parsecs per turn and gives a maximum number of movement squares in space combat of 1.",
+           "name": "Nuclear Engines"
+        },
+        {
+           "level": 9,
+           "description": "Allows all ships to move a distance of 6 away from the owner's colonies.",
+           "name": "Irridium Fuel Cells"
+        },
+        {
+           "level": 10,
+           "description": "Increases the maneuverability rating of the equipped ship by 2 and increases the maximum number of movement squares in space combat by 1.",
+           "name": "Inertial Stabilizer"
+        },
+        {
+           "level": 12,
+           "description": "Allows equipped ships to travel at 3 parsecs per turn and gives a maximum number of movement squares in space combat of 1.",
+           "name": "Sub Light Drives"
+        },
+        {
+           "level": 14,
+           "description": "Allows all ships to move a distance of 7 away from the owner's colonies.",
+           "name": "Dotomite Crystals"
+        },
+        {
+           "level": 16,
+           "description": "Deals 5 damage to all adjacent and diagonally adjacent ships plus 1 damage per 2 attacking ships.",
+           "name": "Energy Pulsar"
+        },
+        {
+           "level": 18,
+           "description": "Allows equipped ships to travel at 4 parsecs per turn and gives a maximum number of movement squares in space combat of 2.",
+           "name": "Fusion Drives"
+        },
+        {
+           "level": 19,
+           "description": "Allows all ships to move a distance of 8 away from the owner's colonies.",
+           "name": "Uridium Fuel Cells"
+        },
+        {
+           "level": 20,
+           "description": "Ship special that reduces the defender's maneuverability rating by 0-1 per turn.",
+           "name": "Warp Dissipator"
+        },
+        {
+           "level": 23,
+           "description": "Allows all ships to move a distance of 9 away from the owner's colonies.",
+           "name": "Reajax II Fuel Cells"
+        },
+        {
+           "level": 24,
+           "description": "Allows equipped ships to travel at 5 parsecs per turn and gives a maximum number of movement squares in space combat of 2.",
+           "name": "Impulse Drives"
+        },
+        {
+           "level": 27,
+           "description": "Ships can travel between any colonies controlled by the owner that have star gates in 1 turn. Costs 3000 BCs to create. Constructed as if it were a ship design.",
+           "name": "Intergalactic Star Gates"
+        },
+        {
+           "level": 29,
+           "description": "Allows all ships to move a distance of 10 away from the owner's colonies.",
+           "name": "Trilithium Crystals"
+        },
+        {
+           "level": 30,
+           "description": "Allows equipped ships to travel at 6 parsecs per turn and gives a maximum number of movement squares in space combat of 3.",
+           "name": "Ion Drives"
+        },
+        {
+           "level": 34,
+           "description": "Increases the attack range of all the direct fire weapons on the equipped ship by 3. This includes all weapons that are not missiles, torpedoes, death weapons, and bombs.",
+           "name": "High Energy Focus"
+        },
+        {
+           "level": 36,
+           "description": "Allows equipped ships to travel at 7 parsecs per turn and gives a maximum number of movement squares in space combat of 3.",
+           "name": "Anti-Matter Drives"
+        },
+        {
+           "level": 38,
+           "description": "Equipped ships always move first in combat and can teleport directly to any square on the battle grid.",
+           "name": "Sub Space Teleporter"
+        },
+        {
+           "level": 40,
+           "description": "Deals 10 damage to all adjacent and diagonally adjacent ships plus 1 damage per 2 attacking ships.",
+           "name": "Ionic Pulsar"
+        },
+        {
+           "level": 41,
+           "description": "Allows ships to travel an infinite distance from their owner's colonies.",
+           "name": "Thorium Cells"
+        },
+        {
+           "level": 42,
+           "description": "Allows equipped ships to travel at 8 parsecs per turn and gives a maximum number of movement squares in space combat of 4.",
+           "name": "Inter-phased Drives"
+        },
+        {
+           "level": 43,
+           "description": "Nullifies the functionality of all sub-space teleporters in use over the owner's planets.",
+           "name": "Sub Space Interdictor"
+        },
+        {
+           "level": 45,
+           "description": "Ensures at least 50% of transporters land on the targeted planet.",
+           "name": "Combat Transporters"
+        },
+        {
+           "level": 46,
+           "description": "Increases the maneuverability rating of the equipped ship by 4 and increases the maximum number of movement squares in space combat by 2.",
+           "name": "Inertial Nullifier"
+        },
+        {
+           "level": 48,
+           "description": "Allows equipped ships to travel at 9 parsecs per turn and gives a maximum number of movement squares in space combat of 4.",
+           "name": "Hyper Drives"
+        },
+        {
+           "level": 50,
+           "description": "Causes 33% of all attacks to miss the target automatically.",
+           "name": "Displacement Device"
+        },
+    ],
+ "category2": [
+        {
+           "level": 1,
+           "description": "Deals 1-4 damage to the target.",
+           "name": "Lasers"
+        },
+        {
+           "level": 1,
+           "description": "Deals 1-7 damage to the target with a range of 2.",
+           "name": "Heavy Lasers"
+        },
+        {
+           "level": 1,
+           "description": "Deals 4 damage to the target. Adds +1 level to the attacker's attack rating for this missile only.",
+           "name": "Nuclear Missile"
+        },
+        {
+           "level": 1,
+           "description": "Deals 3-12 damage to the target. Can only attack planets.",
+           "name": "Nuclear Bomb"
+        },
+        {
+           "level": 2,
+           "description": "Adds 5 to ground combat rolls.",
+           "name": "Hand Lasers"
+        },
+        {
+           "level": 4,
+           "description": "Deals 6 damage to the target. Adds +1 level to the attacker's attack rating for this missile only.",
+           "name": "Hyper V Rockets"
+        },
+        {
+           "level": 5,
+           "description": "Fires 4 shots per turn. Deals 1-4 damage per hit. Requires the same space as 3 lasers.",
+           "name": "Gatling Lasers"
+        },
+        {
+           "level": 6,
+           "description": "Defensive Special Equipment. Destroys 40% of incoming missiles minus 1% per tech level of the missile.",
+           "name": "Anti-missile Rockets"
+        },
+        {
+           "level": 7,
+           "description": "Deals 2-5 damage, halves the effectiveness of the target's shields.",
+           "name": "Neutron Pellet Gun"
+        },
+        {
+           "level": 8,
+           "description": "Deals 8 damage to the target. Adds +1 level to the attacker's attack rating for this missile only.",
+           "name": "Hyper X Rockets"
+        },
+        {
+           "level": 9,
+           "description": "Deals 4-16 damage to the target. Can only attack planets.",
+           "name": "Fusion Bomb"
+        },
+        {
+           "level": 10,
+           "description": "Deals 3-8 damage to the target.",
+           "name": "Ion Cannon"
+        },
+        {
+           "level": 10,
+           "description": "Deals 3-15 damage to the target with a 2 space range.",
+           "name": "Heavy Ion Cannon"
+        },
+        {
+           "level": 11,
+           "description": "Splits into 5 missiles that each deal 6 points of damage to the target.",
+           "name": "Scatter Pack V Missiles"
+        },
+        {
+           "level": 12,
+           "description": "Adds 10 to ground combat rolls. Replaces lower level rifle technologies.",
+           "name": "Ion Rifle"
+        },
+        {
+           "level": 13,
+           "description": "Deals 5-8 damage, halves the effectiveness of the enemy's shields.",
+           "name": "Mass Driver"
+        },
+        {
+           "level": 14,
+           "description": "Deals 10 damage to the target. Adds +2 level to the attacker's attack rating for this missile only.",
+           "name": "Mercullite Missiles"
+        },
+        {
+           "level": 15,
+           "description": "Regular is 3-12 damage with 1 space range. Heavy is 3-24 with a 2 space range.",
+           "name": "Neutron Blaster"
+        },
+        {
+           "level": 16,
+           "description": "Deals 5-20 damage to the target. Can only attack planets.",
+           "name": "Anti-matter Bomb"
+        },
+        {
+           "level": 17,
+           "description": "Deals 1-15 damage to the target. Damage beyond what is needed to kill the ship transfers to the next ship.",
+           "name": "Graviton Beam"
+        },
+        {
+           "level": 18,
+           "description": "Deals 15 damage to the target. Adds + 3 level to the attacker's attack rating for this missile only.",
+           "name": "Stinger Missiles"
+        },
+        {
+           "level": 19,
+           "description": "Deals 8-12 damage, halves the effectiveness of the enemy's shields.",
+           "name": "Hard Beam"
+        },
+        {
+           "level": 20,
+           "description": "Deals 4 - 16 damage with a 1 space range. Also researches Heavy Fusion Beam - Deals 4 - 30 damage with a 2 space range.",
+           "name": "Fusion Beam"
+        },
+        {
+           "level": 21,
+           "description": "Deals damage equal to 20% of the target's hit points plus 1/2% for each firing ship. Round down, minimum damage of 1.",
+           "name": "Ion Stream Projector"
+        },
+        {
+           "level": 22,
+           "description": "Deals 10-50 damage to the target. Can only attack planets.",
+           "name": "Omega Bomb"
+        },
+        {
+           "level": 23,
+           "description": "Deals 30 damage, can only be fired every other turn.",
+           "name": "Anti-matter Torpedoes"
+        },
+        {
+           "level": 24,
+           "description": "Adds 15 to ground combat rolls. Replaces lower level rifle technologies.",
+           "name": "Fusion Rifle"
+        },
+        {
+           "level": 25,
+           "description": "Deals 2- 20 damage. Wide beam gives the computer a + 3 attack rating when firing this weapon.",
+           "name": "Megabolt Cannon"
+        },
+        {
+           "level": 26,
+           "description": "Regular is 5-20. Heavy is 5-40 with a 2 space range.",
+           "name": "Phasor"
+        },
+        {
+           "level": 27,
+           "description": "Splits into 7 missiles that each deal 10 points of damage to the target.",
+           "name": "Scatter Pack VII Missiles"
+        },
+        {
+           "level": 28,
+           "description": "Deals 4-16 damage. Fires 3 times per turn.",
+           "name": "Auto Blaster"
+        },
+        {
+           "level": 29,
+           "description": "Deals 20 damage to the target. Adds + 4 level to the attacker's attack rating for this missile only.",
+           "name": "Pulson Missiles"
+        },
+        {
+           "level": 30,
+           "description": "Deals 1-25 damage to the target. Damage beyond what is needed to kill the ship transfers to the next ship.",
+           "name": "Tachyon Beam"
+        },
+        {
+           "level": 31,
+           "description": "Adds 20 to ground combat rolls. Replaces lower level rifle technologies.",
+           "name": "Hand Phasor"
+        },
+        {
+           "level": 32,
+           "description": "Deals 7-10 damage. Fires 3 times per turn. Halves the effectiveness of the target's shields.",
+           "name": "Gauss Autocannon"
+        },
+        {
+           "level": 33,
+           "description": "Deals 10-20 damage, halves the effectiveness of the enemy's shields.",
+           "name": "Particle Beam"
+        },
+        {
+           "level": 34,
+           "description": "Deals 25 damage to the target. Adds + 5 level to the attacker's attack rating for this missile only.",
+           "name": "Hercular Missiles"
+        },
+        {
+           "level": 35,
+           "description": "Deals 6-30 damage.",
+           "name": "Plasma Cannon"
+        },
+        {
+           "level": 37,
+           "description": "10-40 damage, Range 2.",
+           "name": "Disruptor"
+        },
+        {
+           "level": 38,
+           "description": "Deals 5-20 damage. Fires 3 times per turn.",
+           "name": "Pulse Phasor"
+        },
+        {
+           "level": 39,
+           "description": "Deals 40-70 damage. Can only attack planetary targets.",
+           "name": "Neutronium Bomb"
+        },
+        {
+           "level": 40,
+           "description": "Deals 4 attacks to the target per hit, each for 25 damage. Fires every other turn.",
+           "name": "Hellfire Torpedoes"
+        },
+        {
+           "level": 41,
+           "description": "Deals 30 damage to the target. Adds + 7 level to the attacker's attack rating for this missile only.",
+           "name": "Zeon Missiles"
+        },
+        {
+           "level": 42,
+           "description": "Adds 30 to ground combat rolls. Replaces lower level rifle technologies.",
+           "name": "Plasma Rifle"
+        },
+        {
+           "level": 43,
+           "description": "Deals 75 damage to the target. Fires once every other turn.",
+           "name": "Proton Torpedoes"
+        },
+        {
+           "level": 44,
+           "description": "Splits into 10 missiles that each deal 15 points of damage to the target.",
+           "name": "Scatter Pack X Missiles"
+        },
+        {
+           "level": 45,
+           "description": "Deals 20-50 damage.",
+           "name": "Tri Focus Plasma Cannon"
+        },
+        {
+           "level": 46,
+           "description": "Deals 4 attacks to the target, each dealing 10-35 damage.",
+           "name": "Stellar Converter"
+        },
+        {
+           "level": 47,
+           "description": "Deals damage equal to 40% of the target's hit points plus 1/2% for each firing ship. Round down, minimum damage of 1.",
+           "name": "Neutron Stream Projector"
+        },
+        {
+           "level": 48,
+           "description": "Deals 20-100 damage.",
+           "name": "Mauler Device"
+        },
+        {
+           "level": 50,
+           "description": "Deals 150 damage to the target. Fires every other turn. Damage is reduced by 15 for each space travelled.",
+           "name": "Plasma Torpedoes"
+        },
+    ],
 }
+
