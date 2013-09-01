@@ -232,20 +232,30 @@ Star.prototype.animations = {
             }, 200, "easeOut");
         }
         // http://jsfiddle.net/VSAED/52/ - working version, no trembling
-
-        var imagePath = "/images/selection-c3-inner-optimized.svg";
-        this.selection = Star.canvas.image(imagePath, this.attributes.x_axis-6, this.attributes.y_axis-6, 12, 12);
+        this.selection = Star.canvas.circle(this.attributes.x_axis, this.attributes.y_axis, 40);
         this.selection.attr({
-            "transform": "S5",
+            "stroke": "#28AD50",
+            "stroke-dasharray": "--",
+            "stroke-width": 5.7,
+            "stroke-linecap": "square",
+            "stroke-opacity": 0.8
         });
+
         var anim = Raphael.animation({"transform": "...r360"}, 9000).repeat(Infinity);
         this.selection.animate(anim);
 
-        // var innerSelectionAnimation = function () {
-        //     this.selection.animate({"transform": "...r360"}, 900, innerSelectionAnimation);
-        // };
-        // innerSelectionAnimation();
-    },
+        this.selection2 = Star.canvas.circle(this.attributes.x_axis, this.attributes.y_axis, 30);
+        this.selection2.attr({
+            "stroke": "#28AD50",
+            "stroke-dasharray": "--",
+            "stroke-width": 5.7,
+            "stroke-linecap": "square",
+            "stroke-opacity": 0.8
+        });
+
+        var anim2 = Raphael.animation({"transform": "...r-360"}, 9000).repeat(Infinity);
+        this.selection2.animate(anim2);
+       },
 
     deselect: function() {
         if(this.data.name) {
@@ -255,6 +265,11 @@ Star.prototype.animations = {
         }
 
         this.selection.animate({
+            opacity: 0
+        }, 200, function() {
+            this.remove();
+        });
+        this.selection2.animate({
             opacity: 0
         }, 200, function() {
             this.remove();
