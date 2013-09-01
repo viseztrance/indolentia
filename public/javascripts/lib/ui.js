@@ -8,8 +8,8 @@ UI.render = function(object) {
 UI.modules = {
     game: function(game) {
         var content = new Template("layouts/game").process({});
-        var scene = Scene.findOrCreate("game", content);
-        scene.render();
+        var scene = Scene.findOrCreate("game");
+        scene.render(content);
         scene.setActive(true);
 
         game.map = new Map($("div.map"));
@@ -24,8 +24,8 @@ UI.modules = {
     },
     research: function(research) {
         var content = new Template("layouts/research").process(research);
-        var scene = Scene.findOrCreate("research", content);
-        scene.render();
+        var scene = Scene.findOrCreate("research");
+        scene.render(content);
         scene.setActive(true);
 
         $("#research .back").click(function() {
@@ -56,6 +56,7 @@ UI.modules = {
             $("#" + $(this).data("content-for") + "-content").add($(this).parents("li")).addClass("active");
             return false;
         });
+        $("#research .available nav a:first").click();
     },
     star: function(star) {
         var preview = Star.TYPES[star.attributes.type].preview,

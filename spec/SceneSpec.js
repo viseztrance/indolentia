@@ -1,8 +1,9 @@
 describe("Scene", function() {
-    var scene;
+    var scene, content;
 
     beforeEach(function() {
-         scene = new Scene("fluffy", "<h1>This is the content</h1>");
+        content = "<h1>This is the content</h1>";
+        scene = new Scene("fluffy");
     });
 
     afterEach(function() {
@@ -13,7 +14,7 @@ describe("Scene", function() {
     describe("rendering", function() {
         it("creates an html element", function() {
             expect($("#fluffy.scene").length).toEqual(0);
-            scene.render();
+            scene.render(content);
             expect($("#fluffy.scene").length).toEqual(1);
             expect($("#fluffy.scene").html()).toBe("<h1>This is the content</h1>");
         });
@@ -22,7 +23,7 @@ describe("Scene", function() {
             it("doesn't set the element as active", function() {
                 scene.active = false;
                 spyOn(scene, "setActive");
-                scene.render();
+                scene.render(content);
                 expect(scene.setActive.callCount).toEqual(0);
             });
         });
@@ -31,7 +32,7 @@ describe("Scene", function() {
             it("sets the element as active", function() {
                 scene.active = true;
                 spyOn(scene, "setActive");
-                scene.render();
+                scene.render(content);
                 expect(scene.setActive.callCount).toEqual(1);
             });
         });
@@ -47,7 +48,7 @@ describe("Scene", function() {
 
     describe("being set as active", function() {
         beforeEach(function() {
-            scene.render();
+            scene.render(content);
         });
 
         it("sets the active class", function() {
@@ -60,7 +61,7 @@ describe("Scene", function() {
             var existingScene = new Scene("existing", "test");
             existingScene.active = true;
             existingScene.create();
-            existingScene.render();
+            existingScene.render(content);
             scene.create();
             expect(existingScene.getElement().hasClass("active")).toBeTruthy();
             scene.setActive(true);
@@ -71,7 +72,7 @@ describe("Scene", function() {
     describe("being set as inactive", function() {
         beforeEach(function() {
             scene.active = true;
-            scene.render();
+            scene.render(content);
         });
 
         it("removes the active class", function() {

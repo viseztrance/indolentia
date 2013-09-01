@@ -1,14 +1,13 @@
-function Scene(name, content) {
+function Scene(name) {
     this.name = name;
-    this.content = content;
     this.active = false;
 }
 
 Scene.entries = [];
 
-Scene.findOrCreate = function(name, content) {
+Scene.findOrCreate = function(name) {
     return this.find({ name: name }) || (function() {
-        var scene = new Scene(name, content);
+        var scene = new Scene(name);
         scene.create();
         return scene;
     })();
@@ -28,14 +27,14 @@ Scene.find = function(criteria) {
     return false;
 };
 
-Scene.prototype.render = function() {
+Scene.prototype.render = function(content) {
     if(!this.getElement().length) {
         var element = $("<div>").attr({
             "class": "scene",
             id: this.name
         });
 
-        element.html(this.content);
+        element.html(content);
         $("body").append(element);
     }
 
