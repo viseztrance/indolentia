@@ -1,5 +1,6 @@
 <h2>Research</h2> <a href="#" class="back">Map</a>
 <br />
+<p>Funds: <%= UI.game.currentPlayer.creditsPerTurn().technology %> credits</p>
 
 <div class="wrapper">
   <section class="available">
@@ -34,9 +35,13 @@
           <label><%= name %></label>
           <input type="text" class="slider" name="<%= name %>" value="" />
           <p>
-            <%= technologies[name].researching.item.name %> |
-            Lvl: <%= technologies[name].researching.item.level %> |
-            <%= (technologies[name].researching.credits / technologies[name].researching.item.cost()) * 100 %>%
+            <% if(technologies[name].researching.item) { %>
+              <%= technologies[name].researching.item.name %> |
+              Lvl: <%= technologies[name].researching.item.level %> |
+              <%= (technologies[name].researching.credits / technologies[name].researching.item.cost()) * 100 %>%
+            <% } else { %>
+              <em>Nothing is being researched</em>
+            <% } %>
           </p>
         </li>
       <% } %>

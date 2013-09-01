@@ -41,7 +41,7 @@ Player.prototype.endTurn = function() {
     for(var i in this.ownedStars) {
         this.ownedStars[i].endTurn();
     }
-    this.research.perform(this.creditsPerTurn().research);
+    this.research.perform(this.creditsPerTurn().technology);
     this.game.nextPlayer();
 };
 
