@@ -106,23 +106,7 @@ describe("Star", function() {
                 expect(credits.forPopulation()).toEqual(84);
             });
 
-            describe("EcoSpending", function() {
-                it("changes allocated budget from population to technology when conditions are met", function() {
-                    star.budget.population = 0.5;
-                    star.attributes.population = 100;
-                    star.attributes.maxPopulation = 100;
-                    star.attributes.waste = 0;
-                    spyOn(star, "creditsPerTurn").andReturn(400);
-                    spyOn(star, "wasteGrowth").andReturn(20);
-                    star.endTurn();
-                    expect(star.attributes.waste).toEqual(0);
-                    expect(star.attributes.population).toEqual(star.attributes.maxPopulation);
-                    expect(star.budget.population).toEqual(0.05);
-                    expect(star.budget.technology).toEqual(0.5);
-                });
-            });
-
-            it("has a percentage assigned for technology", function() {
+           it("has a percentage assigned for technology", function() {
                 star.budget.technology = 0.2;
                 expect(credits.forTechnology()).toEqual(24);
                 star.budget.technology = 0.7;
