@@ -3,6 +3,7 @@ $(function() {
 
     if(!game) {
         game = new Game(MemoryStore.read("map"));
+        // Load technologies
         $.ajax({
             url: "/data/tech-tree.json",
             async: false,
@@ -12,6 +13,8 @@ $(function() {
                 game.technologies = Technology.create(entries);
             }
         });
+        game.scenes = Scene.entries;
+
         game.create();
         MemoryStore.save("game", game);
     }
@@ -28,14 +31,6 @@ $(function() {
     };
     game.onEndTurn = function() {
         game.save();
-        UI.getInstance().render(game.galaxy.currentStar);
+        UI.render(game.galaxy.currentStar);
     };
-
-    UI.getInstance().set({
-        info: $("aside.info")
-    });
-
-    game.map.center(game.galaxy.origin[0], game.galaxy.origin[1]);
-    var homeworld = game.currentPlayer.ownedStars[0];
-    $.proxy(homeworld.events.click, homeworld)();
 });

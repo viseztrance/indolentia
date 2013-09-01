@@ -1,3 +1,19 @@
+.scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  &.active {
+    z-index: 100;
+  }
+}
+
+#research {
+  background-color: yellow;
+}
+
 aside.info {
   color: #fff;
   height: calc(~"100% - 40px");

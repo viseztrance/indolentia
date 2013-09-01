@@ -14,9 +14,6 @@ describe("Star", function() {
         Star.canvas = Raphael($("#map").get(0), 500, 500);
         galaxy = new Galaxy();
         galaxy.game = { currentPlayer: new Player() };
-        UI.getInstance().set({
-            info: $("aside.info")
-        });
     });
 
     describe("when clicked", function() {

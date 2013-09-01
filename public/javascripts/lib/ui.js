@@ -1,29 +1,57 @@
-function UI() {
-    if (arguments.callee._singletonInstance) {
-        return arguments.callee._singletonInstance;
-    }
-    this.templates = {};
-    return arguments.callee._singletonInstance = this;
+var UI = {};
 
-};
-
-UI.getInstance = function() {
-    return new UI();
-};
-
-UI.prototype.set = function(objects) {
-    for(var name in objects) {
-        this[name] = objects[name];
-    }
-    return this;
-};
-
-UI.prototype.render = function(object) {
+UI.render = function(object) {
     var klass = MemoryStore.getClassName(object).toLowerCase();
     $.proxy(this.modules[klass], this)(object);
 };
 
-UI.prototype.modules = {
+UI.modules = {
+    game: function(game) {
+        var content = new Template("layouts/game").process({});
+        var scene = Scene.findOrCreate("game", content);
+        scene.render();
+        scene.setActive(true);
+
+        game.map = new Map($("div.map"));
+        game.map.create();
+
+        Star.canvas = game.map.canvas;
+        game.galaxy.render();
+
+        game.map.center(game.galaxy.origin[0], game.galaxy.origin[1]);
+        var homeworld = game.currentPlayer.ownedStars[0];
+        $.proxy(homeworld.events.click, homeworld)();
+    },
+    research: function(research) {
+        var content = new Template("layouts/research").process(research);
+        var scene = Scene.findOrCreate("research", content);
+        scene.render();
+        scene.setActive(true);
+
+        $("#research .back").click(function() {
+            scene.destroy();
+            UI.render(UI.game);
+            return false;
+        });
+
+        for(var i in research.budget) {
+            $("#research input.slider[name=" + i + "]").val(research.budget[i] * 100);
+        }
+        $("#research input.slider").slide({
+            equalize: true,
+            change: function() {
+                $("input.slider").each(function(i, item) {
+                    research.budget[$(item).attr("name")] = $(item).val() / 100;
+                });
+                UI.game.save();
+            },
+            load: function(slider) {
+                slider.ui.wrapper.siblings("label").click(function() {
+                    slider.isFrozen() ? slider.unfreeze() : slider.freeze();
+                });
+            }
+        });
+    },
     star: function(star) {
         var preview = Star.TYPES[star.attributes.type].preview,
             currentPlayer = star.galaxy.game.currentPlayer;
@@ -36,12 +64,12 @@ UI.prototype.modules = {
         };
         var args = $.extend({}, star.attributes, defaults);
         var template = new Template("star").process(args);
-        this.info.html(template);
+        $("#game aside.info").html(template);
 
         for(var i in star.budget) {
-            $("input.slider[name=" + i + "]").val(star.budget[i] * 100);
+            $("#game input.slider[name=" + i + "]").val(star.budget[i] * 100);
         }
-        $("input.slider").slide({
+        $("#game input.slider").slide({
             equalize: true,
             change: function() {
                 $("input.slider").each(function(i, item) {
@@ -56,9 +84,15 @@ UI.prototype.modules = {
             }
         });
 
-        $("#end-turn").click(function() {
+        $("#end-turn-link").click(function() {
             // Refresh sidebar at the end of turn
             star.galaxy.game.currentPlayer.endTurn();
+            return false;
+        });
+
+        $("#research-link").click(function() {
+            UI.render(star.galaxy.game.currentPlayer.research);
+            star.galaxy.game.save();
             return false;
         });
     }

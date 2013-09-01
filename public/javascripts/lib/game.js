@@ -57,11 +57,17 @@ Game.prototype.setHomeWorlds = function() {
 };
 
 Game.prototype.render = function() {
-    this.map = new Map($("div.map"));
-    this.map.create();
+    Scene.entries = this.scenes;
+    UI.game = this;
 
-    Star.canvas = this.map.canvas;
-    this.galaxy.render();
+    var scene = Scene.find({ active: true });
+    switch (scene && scene.name) {
+    case "research":
+        UI.render(this.currentPlayer.research);
+        break;
+    default:
+        UI.render(this);
+    }
 };
 
 Game.prototype.endTurn = function() {
