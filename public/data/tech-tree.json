@@ -22,7 +22,8 @@
         {
          "level": 1,
          "description": "some description",
-         "name": "Some name"
+         "name": "Some name",
+         "default": true
         },
         {
          "level": 2,
@@ -35,7 +36,8 @@
         {
          "level": 1,
          "description": "Control 2 factories per population",
-         "name": "Robotics Controls 2"
+         "name": "Robotics Controls 2",
+         "default": true
         },
         {
          "level": 1,
@@ -154,8 +156,7 @@
         },
         {
          "level": 37,
-         "description": "Increases missile defense rating by 8.
-     ",
+         "description": "Increases missile defense rating by 8.",
          "name": "ECM Jammer Mark VIII"
         },
         {
@@ -209,7 +210,8 @@
         {
          "level": 1,
          "description": "Standard armor for ships and missile bases. Gives small ships 3 hit points, medium ships 18 hit points, large ships 100 hit points, and assault ships 600 hit points. Gives missile bases 15 hit points.",
-         "name": "Titanium Armor"
+         "name": "Titanium Armor",
+         "default": true
         },
         {
          "level": 3,
@@ -337,7 +339,8 @@
         {
           "level": 1,
           "description": "Reduces all damage to equipped targets by 1.",
-          "name": "Class I Deflector Shield"
+          "name": "Class I Deflector Shield",
+          "default": true
         },
         {
           "level": 4,
@@ -464,7 +467,8 @@
         {
            "level": 1,
            "description": "Eliminates 2 units of pollution for 1 BC.",
-           "name": "Ecological Restoration"
+           "name": "Ecological Restoration",
+         "default": true
         },
         {
            "level": 2,
@@ -616,7 +620,8 @@
         {
            "level": 1,
            "description": "Allows equipped ships to travel at 1 parsec per turn and gives a maximum number of movement squares in space combat of 1.",
-           "name": "Retro Engines"
+           "name": "Retro Engines",
+         "default": true
         },
         {
            "level": 2,
@@ -758,7 +763,8 @@
         {
            "level": 1,
            "description": "Deals 1-4 damage to the target.",
-           "name": "Lasers"
+           "name": "Lasers",
+         "default": true
         },
         {
            "level": 1,

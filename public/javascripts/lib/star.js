@@ -233,25 +233,18 @@ Star.prototype.animations = {
         }
         // http://jsfiddle.net/VSAED/52/ - working version, no trembling
 
-        paper = new Raphael(this.attributes.x_axis, this.attributes.y_axis, 80, 80);
-        paper.setStart();
-        innerSelection = paper.circle(this.attributes.x_axis, this.attributes.y_axis, 40);
-        innerSelection.attr({
-            "stroke": "#28AD50",
-            "stroke-dasharray": "--",//—
-            "stroke-width": 5.7,
-            "stroke-linecap": "square",
-            "stroke-opacity": 0.8
+        var imagePath = "/images/selection-c3-inner-optimized.svg";
+        this.selection = Star.canvas.image(imagePath, this.attributes.x_axis-6, this.attributes.y_axis-6, 12, 12);
+        this.selection.attr({
+            "transform": "S5",
         });
-        // var imagePath = "/images/selection-c3-inner-optimized.png";
-        // var innerSelection = this.selection.image(imagePath, this.attributes.x_axis-6, this.attributes.y_axis-6, 12, 12);
-        // innerSelection.attr({
-        //     "transform": "S5",
-        // });
-
         var anim = Raphael.animation({"transform": "...r360"}, 9000).repeat(Infinity);
-        innerSelection.animate(anim);
-        this.selection = paper.setFinish();
+        this.selection.animate(anim);
+
+        // var innerSelectionAnimation = function () {
+        //     this.selection.animate({"transform": "...r360"}, 900, innerSelectionAnimation);
+        // };
+        // innerSelectionAnimation();
     },
 
     deselect: function() {
@@ -261,11 +254,10 @@ Star.prototype.animations = {
             }, 200);
         }
 
-        // this.selection.animate({
-        //     opacity: 0
-        // }, 200, function() {
-        //     this.remove();
-        // });
-        // this.selection.remove();
+        this.selection.animate({
+            opacity: 0
+        }, 200, function() {
+            this.remove();
+        });
     }
 };
