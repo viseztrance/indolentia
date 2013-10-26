@@ -1,7 +1,7 @@
 var UI = {};
 
 UI.render = function(object) {
-    var klass = MemoryStore.getClassName(object).toLowerCase();
+    var klass = Perseverance.getClassName(object).toLowerCase();
     $.proxy(this.modules[klass], this)(object);
 };
 

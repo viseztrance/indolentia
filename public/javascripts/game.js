@@ -1,8 +1,8 @@
 $(function() {
-    var game = MemoryStore.read("game");
+    var game = Perseverance.read("game");
 
     if(!game) {
-        game = new Game(MemoryStore.read("map"));
+        game = new Game(Perseverance.read("map"));
         // Load technologies
         $.ajax({
             url: "/data/tech-tree.json",
@@ -16,13 +16,13 @@ $(function() {
         game.scenes = Scene.entries;
 
         game.create();
-        MemoryStore.save("game", game);
+        Perseverance.save("game", game);
     }
     game.render();
     game.save = function() {
-        MemoryStore.save("game", game, function(object) {
+        Perseverance.save("game", game, function(object) {
             if(typeof(object) == "object") {
-                var klassName = MemoryStore.getClassName(object);
+                var klassName = Perseverance.getClassName(object);
                 // Avoid serializing third party objects
                 if(!klassName || klassName.match(/svg/i)) return false;
             }

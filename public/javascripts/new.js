@@ -6,7 +6,7 @@ $(function() {
             current.hide();
             next.show();
         } else {
-            MemoryStore.save("map", $(this).serializeJSON());
+            Perseverance.save("map", $(this).serializeJSON());
             window.location = "/game.html";
         }
         return false;
