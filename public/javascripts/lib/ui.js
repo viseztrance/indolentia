@@ -3,7 +3,10 @@ var UI = {};
 UI.render = function(object) {
     var klass = Perseverance.getClassName(object).toLowerCase();
     $.proxy(this.modules[klass], this)(object);
+    if(this.callbacks["afterRender"]) this.callbacks.afterRender();
 };
+
+UI.callbacks = {};
 
 UI.modules = {
     game: function(game) {
@@ -31,6 +34,7 @@ UI.modules = {
         $("#research .back").click(function() {
             scene.destroy();
             UI.render(UI.game);
+            UI.game.save();
             return false;
         });
 
@@ -57,6 +61,27 @@ UI.modules = {
             return false;
         });
         $("#research .available nav a:first").click();
+    },
+    technology: function(technology) {
+        var technologies = UI.game.currentPlayer.research.technologies[technology.category]["researchable"];
+        var args = $.extend({}, { researchedTechnology: technology}, {technologies: technologies });
+        var content = new Template("layouts/technology").process(args);
+        var scene = Scene.findOrCreate("technology");
+        scene.render(content, { replace: true });
+        scene.setActive(true);
+        $("#technology .choice").click(function(e) {
+            e.preventDefault();
+            var level = $(this).data("level");
+            UI.game.currentPlayer.research.technologies[technology.category]["researchable"].every(function(technology) {
+                if(technology.level == level) {
+                    UI.game.currentPlayer.research.study(technology);
+                    UI.render(UI.game);
+                    return false;
+                }
+                return true;
+            });
+            InteractiveEvent.current().end();
+        });
     },
     star: function(star) {
         var preview = Star.TYPES[star.attributes.type].preview,
@@ -91,8 +116,9 @@ UI.modules = {
         });
 
         $("#end-turn-link").click(function() {
-            // Refresh sidebar at the end of turn
             star.galaxy.game.currentPlayer.endTurn();
+            // Refresh sidebar at the end of turn
+            UI.render(star);
             return false;
         });
 

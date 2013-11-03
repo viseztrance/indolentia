@@ -1,8 +1,9 @@
 function Player(attributes) {
-    this.attributes      = attributes || {};
-    this.ownedStars      = [];
-    this.exploredStars   = [];
-    this.humanControlled = false;
+    this.attributes        = attributes || {};
+    this.ownedStars        = [];
+    this.exploredStars     = [];
+    this.interactiveEvents = InteractiveEvent.entries;
+    this.humanControlled   = false;
 }
 
 Player.colors = ["red", "green", "yellow"];
@@ -27,8 +28,15 @@ Player.prototype.explore = function(star) {
     this.exploredStars.push(star);
 };
 
+Player.prototype.renderEvents = function() {
+    var event = InteractiveEvent.first();
+    if(event) event.render();
+};
+
 Player.prototype.play = function() {
     this.game.currentPlayer = this;
+    InteractiveEvent.entries = this.interactiveEvents;
+    this.renderEvents();
 
     // End the turn automatically for the cpu, but it should be manually triggered for people
     if(!this.humanControlled) {
@@ -41,7 +49,12 @@ Player.prototype.endTurn = function() {
     for(var i in this.ownedStars) {
         this.ownedStars[i].endTurn();
     }
-    this.research.perform(this.creditsPerTurn().technology);
+    this.research.perform(this.creditsPerTurn().technology, function(technology) {
+        var event = new InteractiveEvent("research");
+        event.content = technology;
+        event.create();
+    });
+    this.interactiveEvents = InteractiveEvent.entries;
     this.game.nextPlayer();
 };
 

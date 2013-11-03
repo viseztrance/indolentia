@@ -10,10 +10,23 @@ describe("Player", function() {
             spyOn(player, "endTurn");
         });
 
+        afterEach(function() {
+            InteractiveEvent.reset();
+        });
+
         it("updates the game current player", function() {
             expect(game.currentPlayer).toBeFalsy();
             player.play();
             expect(game.currentPlayer).toEqual(player);
+        });
+
+        it("renders first interactive event", function() {
+            var event = new InteractiveEvent("research");
+            spyOn(event, "render");
+            event.content = new Technology();
+            event.create();
+            player.play();
+            expect(event.render).toHaveBeenCalled();
         });
 
         describe("as a human", function() {

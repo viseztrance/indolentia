@@ -30,14 +30,17 @@ describe("Research", function() {
         describe("researching", function() {
             it("sets current technology to the researching queue", function() {
                 var research = new Research(technologies);
-                research.study(technology2);
-                expect(research.technologies.cat1.researching.item).toEqual(technology2);
+                research.technologies.cat2.researching.item = undefined;
+                research.study(technology5);
+                expect(research.technologies.cat2.researching.item).toEqual(technology5);
             });
 
             it("removes researched technologies from the researchable stack", function() {
                 var research = new Research(technologies);
-                research.study(technology4);
-                expect(research.technologies.cat2.researchable).toEqual([technology5]);
+                research.technologies.cat2.researching.item = undefined;
+                research.technologies.cat2.researchable = [technology4, technology5];
+                research.study(technology5);
+                expect(research.technologies.cat2.researchable).toEqual([technology4]);
             });
 
             it("doesn't take any action if something is already being researched", function() {

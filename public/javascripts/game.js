@@ -31,6 +31,7 @@ $(function() {
     };
     game.onEndTurn = function() {
         game.save();
-        UI.render(game.galaxy.currentStar);
     };
+
+    UI.callbacks["afterRender"] = game.save;
 });

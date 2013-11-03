@@ -57,13 +57,16 @@ Game.prototype.setHomeWorlds = function() {
 };
 
 Game.prototype.render = function() {
-    Scene.entries = this.scenes;
     UI.game = this;
-
+    Scene.entries = this.scenes;
+    InteractiveEvent.entries = this.currentPlayer.interactiveEvents;
     var scene = Scene.find({ active: true });
     switch (scene && scene.name) {
     case "research":
         UI.render(this.currentPlayer.research);
+        break;
+    case "technology":
+        InteractiveEvent.current().render();
         break;
     default:
         UI.render(this);

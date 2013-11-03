@@ -19,6 +19,26 @@ describe("Scene", function() {
             expect($("#fluffy.scene").html()).toBe("<h1>This is the content</h1>");
         });
 
+        describe("replacing content", function() {
+            beforeEach(function() {
+                scene.render(content);
+            });
+
+            describe("without the replace option", function() {
+                it("doesn't change contents", function() {
+                    scene.render("new content");
+                    expect($("#fluffy.scene").html()).toBe("<h1>This is the content</h1>");
+                });
+            });
+
+            describe("given the replace option", function() {
+                it("changes contents", function() {
+                    scene.render("new content", { replace: true });
+                    expect($("#fluffy.scene").html()).toBe("new content");
+                });
+            });
+        });
+
         describe("being marked as inactive", function() {
             it("doesn't set the element as active", function() {
                 scene.active = false;

@@ -35,7 +35,9 @@ function Research(technologies) {
 Research.prototype.study = function(technology) {
     // Prevent any action if something is already being researched
     if(this.technologies[technology.category].researching.item) return false;
-    var index = this.technologies[technology.category].researchable.indexOf[technology];
+    var index = this.technologies[technology.category].researchable.map(function(currentTechnology) {
+        return currentTechnology.level;
+    }).indexOf(technology.level);
     if(index != -1) {
         // Move technology from the researchable stack to the researching item location
         this.technologies[technology.category].researchable.splice(index, 1);
@@ -44,7 +46,7 @@ Research.prototype.study = function(technology) {
     return technology;
 };
 
-Research.prototype.perform = function(credits) {
+Research.prototype.perform = function(credits, callback) {
     for(var category in this.budget) {
         if(this.technologies[category]) {
             this.technologies[category].researching.credits += this.creditsFor(category, credits);
@@ -54,6 +56,7 @@ Research.prototype.perform = function(credits) {
                 this.technologies[category].researching.credits -= technology.cost(); // Substract current cost
                 this.technologies[category].researching.item = undefined; // Remove item from currently researching
                 this.technologies[category].available.push(technology); // Add item to the available (researched) stack
+                if(callback) callback(technology);
             }
         }
     }
