@@ -50,7 +50,7 @@ Player.prototype.endTurn = function() {
         this.ownedStars[i].endTurn();
     }
     this.research.perform(this.creditsPerTurn().technology, function(technology) {
-        var event = new InteractiveEvent("research");
+        var event = new InteractiveEvent("research", "technology");
         event.content = technology;
         event.create();
     });

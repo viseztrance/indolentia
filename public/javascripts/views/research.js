@@ -6,7 +6,7 @@ UI.views.research = function(research) {
 
     $("#research .back").click(function() {
         scene.destroy();
-        UI.render(UI.game);
+        UI.render("game", UI.game);
         UI.game.save();
         return false;
     });

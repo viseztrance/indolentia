@@ -50,11 +50,8 @@ Galaxy.prototype.render = function() {
 };
 
 Galaxy.prototype.setCurrentStar = function(star) {
-    if(this.currentStar && this.currentStar.selection) {
-        $.proxy(this.currentStar.animations.deselect, this.currentStar)();
-    }
     this.currentStar = star;
-    UI.render(this.currentStar);
+    return true;
 };
 
 Galaxy.prototype.findStarByCoordinates = function(point) {

@@ -25,15 +25,18 @@ Star.canvas = null;
 Star.TYPES = {
     blue: {
         url: "/images/stars/blue.png",
-        preview: "/images/preview.png"
+        preview: "/images/preview.png",
+        full: "/images/preview.png"
     },
     gray: {
         url: "/images/stars/gray.png",
-        preview: "/images/preview.png"
+        preview: "/images/preview.png",
+        full: "/images/preview.png"
     },
     yellow: {
         url: "/images/stars/yellow.png",
-        preview: "/images/preview.png"
+        preview: "/images/preview.png",
+        full: "/images/preview.png"
     }
 };
 
@@ -159,8 +162,6 @@ Star.prototype.industryGrowth = function() {
 
 Star.prototype.create = function() {
     this.render();
-    this.data.body.click(this.events.click, this);
-    this.data.body.hover(this.events.hover, this.events.unhover, this, this);
 };
 
 Star.prototype.pathTo = function(destination) {
@@ -203,25 +204,6 @@ Star.prototype.endTurn = function() {
     this.ecoSpending();
     this.attributes.factories = Math.min(this.attributes.factories + this.industryGrowth(), this.attributes.maxPopulation * 15);
     this.adjustEcoSpending();
-};
-
-Star.prototype.events = {
-    click: function() {
-        this.galaxy.setCurrentStar(this);
-        $.proxy(this.animations.select, this)();
-    },
-
-    hover: function() {
-        if(this.galaxy.currentStar && this.attributes.reachable) {
-            this.galaxy.path = this.galaxy.currentStar.pathTo(this);
-        }
-    },
-
-    unhover: function() {
-        if(this.galaxy.path) {
-            this.galaxy.path.remove();
-        }
-    }
 };
 
 Star.prototype.animations = {

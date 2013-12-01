@@ -1,10 +1,10 @@
-var UI = {};
-
-UI.render = function(object) {
-    var klass = Perseverance.getClassName(object).toLowerCase();
-    $.proxy(this.views[klass], this)(object);
-    if(this.callbacks["afterRender"]) this.callbacks.afterRender();
+var UI = {
+    callbacks: {},
+    views: {}
 };
 
-UI.callbacks = {};
-UI.views = {};
+UI.render = function(view, object, locals) {
+    locals = locals || {};
+    $.proxy(this.views[view], this)(object, locals);
+    if(this.callbacks["afterRender"]) this.callbacks.afterRender();
+};

@@ -1,6 +1,6 @@
 UI.views.technology = function(technology) {
     var technologies = UI.game.currentPlayer.research.technologies[technology.category]["researchable"];
-    var args = $.extend({}, { researchedTechnology: technology}, {technologies: technologies });
+    var args = $.extend({}, { researchedTechnology: technology}, { technologies: technologies });
     var content = new Template("layouts/technology").process(args);
     var scene = Scene.findOrCreate("technology");
     scene.render(content, { replace: true });
@@ -11,7 +11,7 @@ UI.views.technology = function(technology) {
         UI.game.currentPlayer.research.technologies[technology.category]["researchable"].every(function(technology) {
             if(technology.level == level) {
                 UI.game.currentPlayer.research.study(technology);
-                UI.render(UI.game);
+                UI.render("game", UI.game);
                 return false;
             }
             return true;

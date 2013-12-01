@@ -1,5 +1,6 @@
-function InteractiveEvent(category) {
+function InteractiveEvent(category, type) {
     this.category = category;
+    this.type     = type;
 }
 
 InteractiveEvent.entries = {};
@@ -34,7 +35,7 @@ InteractiveEvent.prototype.create = function() {
 
 InteractiveEvent.prototype.render = function() {
     this.current = true;
-    UI.render(this.content);
+    UI.render(this.type, this.content);
 };
 
 InteractiveEvent.prototype.next = function() {
@@ -57,6 +58,6 @@ InteractiveEvent.prototype.end = function() {
     if(nextEvent) {
         nextEvent.render();
     } else {
-        UI.render(UI.game);
+        UI.render("game", UI.game);
     }
 };

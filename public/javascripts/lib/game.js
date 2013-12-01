@@ -63,13 +63,13 @@ Game.prototype.render = function() {
     var scene = Scene.find({ active: true });
     switch (scene && scene.name) {
     case "research":
-        UI.render(this.currentPlayer.research);
+        UI.render("research", this.currentPlayer.research);
         break;
     case "technology":
         InteractiveEvent.current().render();
         break;
     default:
-        UI.render(this);
+        UI.render("game", this);
     }
 };
 

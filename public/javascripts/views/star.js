@@ -33,12 +33,12 @@ UI.views.star = function(star) {
     $("#end-turn-link").click(function() {
         star.galaxy.game.currentPlayer.endTurn();
         // Refresh sidebar at the end of turn
-        UI.render(star);
+        UI.render("star", star);
         return false;
     });
 
     $("#research-link").click(function() {
-        UI.render(star.galaxy.game.currentPlayer.research);
+        UI.render("research", star.galaxy.game.currentPlayer.research);
         star.galaxy.game.save();
         return false;
     });
