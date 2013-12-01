@@ -14,20 +14,8 @@ describe("Star", function() {
         Star.canvas = Raphael($("#map").get(0), 500, 500);
         galaxy = new Galaxy();
         galaxy.game = { currentPlayer: new Player() };
-    });
-
-    describe("when clicked", function() {
-        beforeEach(function() {
-            star = new Star(attributes);
-            star.galaxy = galaxy;
-            star.create();
-        });
-
-        it("updates galaxy current star to the object instance", function() {
-            expect(galaxy.currentStar).toBeFalsy();
-            callSvgEvent(star.data.body, "click", star);
-            expect(galaxy.currentStar).toEqual(star);
-        });
+        star = new Star(attributes);
+        star.galaxy = galaxy;
     });
 
     describe("assigning player", function() {
@@ -149,6 +137,7 @@ describe("Star", function() {
         });
 
         it("has growth hindered by budget", function() {
+            star.attributes.population = 0;
             star.budget.industry = 0.2;
             spyOn(star, "getActiveFactories");
             star.getActiveFactories.andReturn(20);
@@ -204,7 +193,7 @@ describe("Star", function() {
         it("kills off 1(one) population unit each turn after accumulated waste reaches critical mass", function() {
             star.attributes.population = 100;
             star.attributes.maxPopulation = 100;
-            star.attributes.waste = 110;
+            star.attributes.waste = 120;
             star.endTurn();
             expect(star.attributes.population).toEqual(99);
         });
