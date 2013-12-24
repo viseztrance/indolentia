@@ -1,24 +1,24 @@
-<h2><%= name %></h2>
+<h2>{{ name }}</h2>
 <div class="preview">
-  <% if(explored) { %>
-    <span>max <%= maxPopulation %> pop</span>
-  <% } %>
-  <img src="<%= preview %>" alt="" />
+  {% if(explored): %}
+    <span>max {{ maxPopulation }} pop</span>
+  {% endif; %}
+  <img src="{{ preview }}" alt="" />
 </div>
 
-<% if(currentPlayer) { %>
+{% if(currentPlayer): %}
   <section class="stats">
     <dl>
       <dt>Population</dt>
-      <dd><%= Math.floor(population) %></dd>
+      <dd>{{ Math.floor(population) }}</dd>
       <dt>Bases</dt>
       <dd>0</dd>
     </dl>
     <dl>
       <dt>Production</dt>
-      <dd><%= activeFactories %></dd>
+      <dd>{{ activeFactories }}</dd>
       <dt>Waste</dt>
-      <dd><%= waste %></dd>
+      <dd>{{ waste }}</dd>
     </dl>
   </section>
 
@@ -50,7 +50,7 @@
       </li>
     </ul>
   </section>
-<% } %>
+{% endif; %}
 
 <p>
   <a href="#" id="end-turn-link">Next turn</a> | <a href="#" id="research-link">Research</a>
